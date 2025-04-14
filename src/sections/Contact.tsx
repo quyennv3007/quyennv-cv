@@ -1,23 +1,55 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Mail, Github, Linkedin, Printer } from 'lucide-react';
 import { useReactToPrint } from 'react-to-print';
 
 const Contact: React.FC = () => {
   const { t } = useTranslation();
-  const componentRef = useRef(null);
 
   const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
+    content: () => document.getElementById('root'),
+    pageStyle: `
+      @media print {
+        @page {
+          size: A4;
+          margin: 20mm;
+        }
+        body {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        nav, footer, button, .print-hide {
+          display: none !important;
+        }
+        section {
+          page-break-inside: avoid;
+          min-height: auto !important;
+          padding: 0 !important;
+          margin: 20px 0 !important;
+        }
+        h2, h3 {
+          page-break-after: avoid;
+        }
+        .dark {
+          background: white !important;
+          color: black !important;
+        }
+        .dark * {
+          color: black !important;
+          border-color: #ddd !important;
+          background: white !important;
+        }
+      }
+    `,
   });
 
   const handleEmailClick = () => {
-    const mailtoLink = 'mailto:john@example.com?subject=CV Inquiry&body=Hello, I would like to discuss an opportunity with you.';
-    window.open(mailtoLink);
+    const mailtoLink = 'mailto:john@example.com?subject=CV Inquiry from website&body=Hello, I viewed your CV website and would like to connect with you regarding an opportunity.';
+    window.open(mailtoLink, '_blank');
   };
 
   return (
-    <section id="contact" className="min-h-screen flex items-center justify-center py-16" ref={componentRef}>
+    <section id="contact" className="min-h-screen flex items-center justify-center py-16">
       <div className="w-full max-w-2xl">
         <h2 className="text-3xl font-bold mb-12 dark:text-white text-center">{t('contact.title')}</h2>
         
