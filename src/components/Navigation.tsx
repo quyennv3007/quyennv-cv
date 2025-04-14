@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [activeSection, setActiveSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -19,6 +22,9 @@ const Navigation: React.FC = () => {
   ];
 
   useEffect(() => {
+    // Only run scroll detection on the homepage
+    if (location.pathname !== '/') return;
+
     const handleScroll = () => {
       const sections = navItems.map(item => document.getElementById(item.id));
       const scrollPosition = window.scrollY + window.innerHeight / 3;
@@ -44,9 +50,19 @@ const Navigation: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname, navItems]);
 
   const scrollToSection = (id: string) => {
+    const isHomePage = location.pathname === '/';
+    
+    if (!isHomePage) {
+      // If not on homepage, navigate to homepage with hash
+      navigate(`/#${id}`);
+      setIsMenuOpen(false);
+      return;
+    }
+    
+    // If already on homepage, just scroll to the section
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
@@ -60,6 +76,29 @@ const Navigation: React.FC = () => {
       setIsMenuOpen(false);
     }
   };
+
+  // Handle URL hash for direct navigation to sections
+  useEffect(() => {
+    if (location.pathname === '/' && location.hash) {
+      // Extract the id from the hash (remove the # symbol)
+      const id = location.hash.substring(1);
+      
+      // Small timeout to ensure the DOM is fully loaded
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          const offset = 80;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+  
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
+    }
+  }, [location]);
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
@@ -85,14 +124,14 @@ const Navigation: React.FC = () => {
                 className="px-3 py-2 text-sm font-medium transition-all duration-300 relative group"
               >
                 <span className={`${
-                  activeSection === item.id 
+                  activeSection === item.id && location.pathname === '/'
                     ? 'text-blue-600 dark:text-blue-400' 
                     : 'text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400'
                 }`}>
                   {item.label}
                 </span>
                 <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full ${
-                  activeSection === item.id ? 'w-full' : ''
+                  activeSection === item.id && location.pathname === '/' ? 'w-full' : ''
                 }`}></span>
               </button>
             ))}
@@ -112,14 +151,14 @@ const Navigation: React.FC = () => {
                 onClick={() => scrollToSection(item.id)}
                 className="block w-full text-left px-4 py-2 text-base font-medium transition-all duration-200 relative"
               >
-                <span className={activeSection === item.id 
+                <span className={activeSection === item.id && location.pathname === '/'
                   ? 'text-blue-600 dark:text-blue-400' 
                   : 'text-gray-700 dark:text-gray-200'
                 }>
                   {item.label}
                 </span>
                 <span className={`absolute bottom-0 left-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 ${
-                  activeSection === item.id ? 'w-full' : 'w-0'
+                  activeSection === item.id && location.pathname === '/' ? 'w-full' : 'w-0'
                 }`}></span>
               </button>
             ))}

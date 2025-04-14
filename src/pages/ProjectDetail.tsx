@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Github, ExternalLink } from 'lucide-react';
 import AnimatedSection from '../components/AnimatedSection';
@@ -7,6 +7,7 @@ import AnimatedSection from '../components/AnimatedSection';
 const ProjectDetail: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
 
   // Project data with translations
   const projectsData = {
@@ -83,6 +84,12 @@ const ProjectDetail: React.FC = () => {
   const currentLang = i18n.language === 'vi' ? 'vi' : 'en';
   const project = projectsData[id as keyof typeof projectsData];
 
+  // Handle "Back to Projects" with proper scrolling
+  const handleBackToProjects = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigate('/#projects');
+  };
+
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -101,7 +108,7 @@ const ProjectDetail: React.FC = () => {
   }
 
   // Add metadata for SEO
-  React.useEffect(() => {
+  useEffect(() => {
     document.title = `${project.title[currentLang]} - John Doe Portfolio`;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
@@ -112,13 +119,14 @@ const ProjectDetail: React.FC = () => {
   return (
     <AnimatedSection id="project-detail" className="py-16">
       <div className="container mx-auto px-4 max-w-4xl">
-        <Link
-          to="/"
+        <a
+          href="/#projects"
+          onClick={handleBackToProjects}
           className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 mb-8"
         >
           <ArrowLeft size={20} />
           <span>{t('projects.backToProjects')}</span>
-        </Link>
+        </a>
 
         <h1 className="text-3xl font-bold mb-4 dark:text-white">{project.title[currentLang]}</h1>
         <p className="text-gray-700 dark:text-gray-300 mb-8 text-lg">{project.description[currentLang]}</p>
