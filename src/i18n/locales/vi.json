@@ -37,7 +37,16 @@
   },
   "projects": {
     "title": "Dự án",
-    "viewDetails": "Xem chi tiết"
+    "viewDetails": "Xem chi tiết",
+    "backToProjects": "Quay lại Dự án",
+    "backToHome": "Quay về Trang chủ",
+    "role": "Vai trò của tôi",
+    "technologies": "Công nghệ sử dụng",
+    "keyFeatures": "Tính năng chính",
+    "links": "Liên kết dự án",
+    "sourceCode": "Mã nguồn",
+    "liveDemo": "Demo trực tuyến",
+    "notFound": "Không tìm thấy dự án"
   },
   "education": {
     "title": "Học vấn",

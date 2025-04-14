@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Home from './sections/Home';
-import About from './sections/About';
-import Skills from './sections/Skills';
-import Experience from './sections/Experience';
-import Projects from './sections/Projects';
-import Education from './sections/Education';
-import Contact from './sections/Contact';
+import HomePage from './pages/HomePage';
+import ProjectDetail from './pages/ProjectDetail';
 import './i18n';
 
 function App() {
@@ -17,15 +13,26 @@ function App() {
   };
 
   return (
-    <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
-      <Home />
-      <About />
-      <Skills />
-      <Experience />
-      <Projects />
-      <Education />
-      <Contact />
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
+              <HomePage />
+            </Layout>
+          } 
+        />
+        <Route 
+          path="/projects/:id" 
+          element={
+            <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
+              <ProjectDetail />
+            </Layout>
+          } 
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

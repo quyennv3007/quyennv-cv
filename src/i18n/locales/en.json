@@ -37,7 +37,16 @@
   },
   "projects": {
     "title": "Projects",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "backToProjects": "Back to Projects",
+    "backToHome": "Back to Home",
+    "role": "My Role",
+    "technologies": "Technologies Used",
+    "keyFeatures": "Key Features",
+    "links": "Project Links",
+    "sourceCode": "Source Code",
+    "liveDemo": "Live Demo",
+    "notFound": "Project Not Found"
   },
   "education": {
     "title": "Education",
