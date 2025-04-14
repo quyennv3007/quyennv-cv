@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "skills": "Kỹ năng",
+    "experience": "Kinh nghiệm",
+    "projects": "Dự án",
+    "education": "Học vấn",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "title": "Lập trình viên Front-end",
+    "subtitle": "Xây dựng trải nghiệm web hiện đại"
+  },
+  "about": {
+    "title": "Giới thiệu",
+    "content": "Lập trình viên front-end với 2 năm kinh nghiệm xây dựng ứng dụng web hiện đại. Thành thạo hệ sinh thái React và cam kết tạo ra trải nghiệm người dùng xuất sắc. Mong muốn vận dụng chuyên môn kỹ thuật và sáng tạo vào vị trí front-end đầy thách thức."
+  },
+  "skills": {
+    "title": "Kỹ năng",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Công cụ"
+  },
+  "experience": {
+    "title": "Kinh nghiệm làm việc",
+    "current": {
+      "title": "Lập trình viên Front-end",
+      "company": "Tên công ty",
+      "period": "2022 - Hiện tại",
+      "responsibilities": [
+        "Phát triển và bảo trì nhiều ứng dụng web sử dụng React",
+        "Hợp tác với team thiết kế để xây dựng giao diện responsive",
+        "Cải thiện hiệu suất và thời gian tải trang lên 40%"
+      ]
+    }
+  },
+  "projects": {
+    "title": "Dự án",
+    "viewDetails": "Xem chi tiết"
+  },
+  "education": {
+    "title": "Học vấn",
+    "degree": "Khoa học máy tính",
+    "school": "Tên trường đại học",
+    "period": "2018 - 2022"
+  },
+  "languages": {
+    "title": "Ngôn ngữ",
+    "vietnamese": "Tiếng Việt",
+    "english": "Tiếng Anh",
+    "native": "Bản ngữ",
+    "intermediate": "Đọc hiểu kỹ thuật & Giao tiếp cơ bản"
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "email": "Gửi email",
+    "print": "In CV",
+    "followMe": "Theo dõi tôi"
+  }
+}

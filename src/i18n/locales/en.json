@@ -1,0 +1,61 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Front-end Developer",
+    "subtitle": "Building modern web experiences"
+  },
+  "about": {
+    "title": "About Me",
+    "content": "Passionate front-end developer with 2 years of experience building modern web applications. Skilled in React ecosystem and committed to creating exceptional user experiences. Looking to leverage my technical expertise and creativity in a challenging front-end role."
+  },
+  "skills": {
+    "title": "Skills",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Tools"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "current": {
+      "title": "Front-end Developer",
+      "company": "Company Name",
+      "period": "2022 - Present",
+      "responsibilities": [
+        "Developed and maintained multiple React-based web applications",
+        "Collaborated with design team to implement responsive UI components",
+        "Improved application performance and loading times by 40%"
+      ]
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "viewDetails": "View Details"
+  },
+  "education": {
+    "title": "Education",
+    "degree": "Computer Science",
+    "school": "University Name",
+    "period": "2018 - 2022"
+  },
+  "languages": {
+    "title": "Languages",
+    "vietnamese": "Vietnamese",
+    "english": "English",
+    "native": "Native",
+    "intermediate": "Technical Reading & Basic Communication"
+  },
+  "contact": {
+    "title": "Contact",
+    "email": "Email Me",
+    "print": "Print CV",
+    "followMe": "Follow Me"
+  }
+}
