@@ -1,8 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
-import AnimatedSection from '../components/AnimatedSection';
+import FadeIn from '../components/animations/FadeIn';
+import Stagger from '../components/animations/Stagger';
 
 const Projects: React.FC = () => {
   const { t, i18n } = useTranslation();
@@ -36,21 +38,32 @@ const Projects: React.FC = () => {
   ];
 
   return (
-    <AnimatedSection id="projects" className="min-h-screen flex items-center justify-center py-16">
+    <section id="projects" className="min-h-screen flex items-center justify-center py-16">
       <div className="w-full">
-        <h2 className="text-3xl font-bold mb-12 dark:text-white text-center">{t('projects.title')}</h2>
-        <div className="grid md:grid-cols-2 gap-8">
+        <FadeIn>
+          <h2 className="text-3xl font-bold mb-12 dark:text-white text-center">{t('projects.title')}</h2>
+        </FadeIn>
+        
+        <Stagger className="grid md:grid-cols-2 gap-8" staggerDelay={0.2}>
           {projects.map((project) => (
-            <div 
+            <motion.div 
               key={project.id} 
-              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm transition-transform duration-300 hover:-translate-y-2 hover:shadow-md"
+              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm"
+              whileHover={{ y: -10 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <Link to={`/projects/${project.id}`}>
-                <img
-                  src={project.image}
-                  alt={project.title[currentLang]}
-                  className="w-full h-48 object-cover transition-all duration-500 hover:scale-105"
-                />
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <img
+                    src={project.image}
+                    alt={project.title[currentLang]}
+                    className="w-full h-48 object-cover"
+                  />
+                </motion.div>
               </Link>
               <div className="p-6">
                 <Link to={`/projects/${project.id}`}>
@@ -63,49 +76,60 @@ const Projects: React.FC = () => {
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.technologies.map((tech) => (
-                    <span
+                    <motion.span
                       key={tech}
                       className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-300"
+                      whileHover={{ scale: 1.1, y: -2 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 10 }}
                     >
                       {tech}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
                 <div className="flex justify-between items-center">
-                  <Link
-                    to={`/projects/${project.id}`}
-                    className="flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <span>{t('projects.viewDetails')}</span>
-                    <ExternalLink size={16} />
-                  </Link>
+                    <Link
+                      to={`/projects/${project.id}`}
+                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+                    >
+                      <span>{t('projects.viewDetails')}</span>
+                      <ExternalLink size={16} />
+                    </Link>
+                  </motion.div>
                   <div className="flex gap-3">
-                    <a
+                    <motion.a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
                       aria-label="GitHub"
+                      whileHover={{ y: -3, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
                       <Github size={18} />
-                    </a>
-                    <a
+                    </motion.a>
+                    <motion.a
                       href={project.liveDemo}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
                       aria-label="Live Demo"
+                      whileHover={{ y: -3, rotate: -5 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
                     >
                       <ExternalLink size={18} />
-                    </a>
+                    </motion.a>
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </Stagger>
       </div>
-    </AnimatedSection>
+    </section>
   );
 };
 

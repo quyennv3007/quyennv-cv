@@ -17,7 +17,7 @@ const Experience: React.FC = () => {
               {t('experience.current.company')} • {t('experience.current.period')}
             </p>
             <ul className="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-3">
-              {t('experience.current.responsibilities', { returnObjects: true }).map((item: string, index: number) => (
+              {(t('experience.current.responsibilities', { returnObjects: true }) as string[]).map((item: string, index: number) => (
                 <li key={index}>{item}</li>
               ))}
             </ul>
