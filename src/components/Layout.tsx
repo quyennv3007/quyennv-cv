@@ -37,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
         {children}
       </main>
       <footer className="text-center py-8 text-gray-600 dark:text-gray-400">
-        <p>© 2024 John Doe. All rights reserved.</p>
+        <p>© 2025 Nguyễn Văn Quyên. Front-end Developer.</p>
       </footer>
     </div>
   );
