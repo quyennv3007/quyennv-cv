@@ -57,7 +57,7 @@ const Contact: React.FC = () => {
           <h2 className="text-3xl font-bold mb-12 dark:text-white text-center">{t('contact.title')}</h2>
         </FadeIn>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        {/* <div className="grid md:grid-cols-2 gap-8">
           <div className="space-y-6">
             <FadeIn delay={0.2} direction="left">
               <motion.button
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
               </div>
             </div>
           </FadeIn>
-        </div>
+        </div> */}
       </div>
     </section>
   );

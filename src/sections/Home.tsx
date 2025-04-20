@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import FadeIn from '../components/animations/FadeIn';
 import ZoomIn from '../components/animations/ZoomIn';
 import RevealText from '../components/animations/RevealText';
-import { Mail, Printer } from 'lucide-react';
+import { Mail, Printer, Download } from 'lucide-react';
 import { useReactToPrint } from 'react-to-print';
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaBirthdayCake } from "react-icons/fa";
@@ -19,12 +19,13 @@ const Home: React.FC = () => {
     pageStyle: `
       @media print {
         @page {
-          size: A4;
-          margin: 20mm;
+          size: A4 portrait;
+          margin: 15mm;
         }
-        body {
+        html, body {
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
+          background-color: white !important;
         }
         nav, footer, button, .print-hide {
           display: none !important;
@@ -33,10 +34,13 @@ const Home: React.FC = () => {
           page-break-inside: avoid;
           min-height: auto !important;
           padding: 0 !important;
-          margin: 20px 0 !important;
+          margin: 15px 0 !important;
         }
-        h2, h3 {
+        h1, h2, h3 {
           page-break-after: avoid;
+        }
+        img {
+          max-width: 100% !important;
         }
         .dark {
           background: white !important;
@@ -47,8 +51,19 @@ const Home: React.FC = () => {
           border-color: #ddd !important;
           background: white !important;
         }
+        .print-section {
+          break-inside: avoid;
+        }
       }
     `,
+    onBeforeGetContent: () => {
+      document.body.classList.add('printing');
+      return Promise.resolve();
+    },
+    onAfterPrint: () => {
+      document.body.classList.remove('printing');
+    },
+    removeAfterPrint: true,
   });
 
   const handleEmailClick = () => {
@@ -62,23 +77,63 @@ const Home: React.FC = () => {
         <ZoomIn>
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="relative"
+            className="relative w-64 h-64"
           >
-            <img
-              src={avatar}
-              alt="Profile"
-              className="w-48 h-48 rounded-full object-cover shadow-lg"
-            />
-            <motion.div
-              className="absolute inset-0 rounded-full border-2 border-blue-500"
-              animate={{
-                scale: [1, 1.05, 1],
-                opacity: [0.7, 0.3, 0.7],
+            {/* Blue accent shape */}
+            <motion.div 
+              className="absolute border border-blue-500 w-64 h-64 rounded-2xl -bottom-5 -right-5 z-0"
+              animate={{ 
+                rotate: [0, 5, 0, -5, 0], 
               }}
-              transition={{
-                duration: 2.5,
+              transition={{ 
+                duration: 6, 
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut" 
+              }}
+            />
+
+             <motion.div 
+              className="absolute border border-blue-500 w-32 h-32 rounded-2xl -top-5 -left-5 z-0"
+              animate={{ 
+                rotate: [0, 5, 0, -5, 0], 
+              }}
+              transition={{ 
+                duration: 6, 
+                repeat: Infinity,
+                ease: "easeInOut" 
+              }}
+            />
+            
+            {/* Main photo container with overflow hidden */}
+            <motion.div className="absolute inset-0 z-10 overflow-hidden rounded-xl"
+              initial={{ pathLength: 0 }}
+              animate={{ 
+                rotate: [0, 1, 0, -1, 0],
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "easeInOut" 
+              }}
+            >
+              <img
+                src={avatar}
+                alt="Profile"
+                className="w-full h-full object-cover "
+              />
+            </motion.div>
+            
+            {/* Rectangular frame */}
+            <motion.div
+              className="absolute inset-0 z-20 border-2 border-white rounded-xl "
+              initial={{ pathLength: 0 }}
+              animate={{ 
+                rotate: [0, 1, 0, -1, 0],
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "easeInOut" 
               }}
             />
           </motion.div>
@@ -89,70 +144,75 @@ const Home: React.FC = () => {
             <RevealText
               text="Nguyễn Văn Quyên"
               tag="h1"
-              className="text-4xl md:text-6xl font-bold mb-4 dark:text-white"
+              className="text-4xl md:text-5xl font-bold mb-2 bg-gradient-to-r from-gray-500 to-gray-900 dark:text-white text-transparent bg-clip-text py-2"
               delay={0.5}
             />
           </FadeIn>
 
           <FadeIn delay={0.5} direction="right">
-            <p className="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-4">
+            {/* <p className="text-2xl md:text-3xl font-semibold bg-gradient-to-r from-blue-700 to-blue-500 dark:from-blue-500 dark:to-blue-400  text-transparent bg-clip-text mb-4">
               {t('hero.title')}
-            </p>
+            </p> */}            
+            <RevealText
+            text={t('hero.title')}
+            className="text-2xl md:text-2xl font-semibold bg-gradient-to-r from-blue-700 to-blue-500 dark:from-blue-500 dark:to-blue-400 text-transparent bg-clip-text mb-4"
+            delay={0.8}
+            duration={0.4}
+          />
           </FadeIn>
 
           <FadeIn delay={0.7} direction="right" className='flex gap-4'>
-            <p className="inline-flex text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl">
-             <FaPhoneAlt className='mr-2 mt-1 '/>0368395871
+            <p className="inline-flex text-lg md:text-xl text-gray-700 dark:text-gray-400 max-w-2xl">
+              <FaPhoneAlt className='mr-2 mt-1 ' />0368395871
             </p>
-            <p className="inline-flex text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl">
-             < FaBirthdayCake className='mr-2 mt-1 '/> 30/07/1999
+            <p className="inline-flex text-lg md:text-xl text-gray-700 dark:text-gray-400 max-w-2xl">
+              < FaBirthdayCake className='mr-2 mt-1 ' /> 30/07/1999
             </p>
-            <p className="inline-flex text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl">
-             < PiGenderIntersexBold className='mr-2 mt-1 '/> {t('Gender')}
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.2} direction="right">
-          <p className="inline-flex text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-2xl mt-2">
-             < FaLocationDot className='mr-2 mt-1 '/> {t('Location')}
+            <p className="inline-flex text-lg md:text-xl text-gray-700 dark:text-gray-400 max-w-2xl">
+              < PiGenderIntersexBold className='mr-2 mt-1 ' /> {t('Gender')}
             </p>
           </FadeIn>
 
+          {/* <FadeIn delay={0.2} direction="right">
+            <p className="inline-flex text-lg md:text-xl text-gray-700 dark:text-gray-400 max-w-2xl mt-2">
+              < FaLocationDot className='mr-2 mt-1 ' /> {t('Location')}.
+            </p>
+          </FadeIn> */}
 
-          <FadeIn delay={0.2} direction="left" className=' flex justify-between gap-4 mt-4'>
-              <motion.button
-                onClick={handleEmailClick}
-                className="w-full flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
+
+          <FadeIn delay={0.2} direction="left" className='flex justify-between gap-2 mt-6'>
+            <motion.button
+              onClick={handleEmailClick}
+              className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-blue-400  text-white px-4 py-3.5 rounded-xl shadow-lg hover:shadow-blue-500/20 transition-all duration-300"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                animate={{ y: [0, -3, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="text-white"
               >
-                <motion.div
-                  animate={{ y: [0, -3, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Mail size={20} />
-                </motion.div>
-                <span>{t('contact.email')}</span>
-              </motion.button>
-              <motion.button
-                onClick={handlePrint}
-                className="w-full flex items-center justify-center gap-2 bg-gray-600 text-white px-6 py-3 rounded-lg hover:bg-gray-700 transition-colors"
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
+                <Mail size={20} />
+              </motion.div>
+              <span className="font-medium">{t('contact.email')}</span>
+            </motion.button>
+
+            <motion.button
+              onClick={handlePrint}
+              className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-gray-600 to-gray-500 text-white px-4 py-3.5 rounded-xl shadow-lg hover:shadow-gray-500/20 transition-all duration-300"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                animate={{ y: [0, -3, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                className="text-white"
               >
-                <motion.div
-                  animate={{ rotate: [0, 10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Printer size={20} />
-                </motion.div>
-                <span>{t('contact.print')}</span>
-              </motion.button>
-            </FadeIn>
-{/*             
-            <FadeIn delay={0.3} direction="left">
-           
-            </FadeIn> */}
+                <Download size={20} />
+              </motion.div>
+              <span className="font-medium">{t('contact.downloadCV')}</span>
+            </motion.button>
+          </FadeIn>
         </div>
       </div>
     </section>
