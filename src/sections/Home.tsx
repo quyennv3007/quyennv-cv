@@ -8,7 +8,6 @@ import { Mail, Printer, Download } from 'lucide-react';
 import { useReactToPrint } from 'react-to-print';
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaBirthdayCake } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
 import { PiGenderIntersexBold } from "react-icons/pi";
 import avatar from '../assets/image/avatar.jpg'
 const Home: React.FC = () => {
