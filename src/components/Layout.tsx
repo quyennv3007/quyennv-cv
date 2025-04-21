@@ -3,6 +3,9 @@ import Navigation from './Navigation';
 import { useTranslation } from 'react-i18next';
 import { Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import backround2 from '../assets/image/backround2.jpg'
+import whiteClouds from '../assets/image/whiteClouds.jpg'
+import './Layout.css';
 
 interface LayoutProps {
   darkMode: boolean;
@@ -227,7 +230,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url('/src/assets/image/whiteClouds.jpg')`,
+          backgroundImage: `url(${whiteClouds})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: darkMode ? 0 : 1,
@@ -239,7 +242,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
       <div 
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: `url('/src/assets/image/backround2.jpg')`,
+          backgroundImage: `url(${backround2})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           opacity: darkMode ? 1 : 0,
@@ -399,9 +402,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
       ))}
 
       {/* Content wrapper - giảm opacity background để thấy hình nền rõ hơn */}
-      <div className={`relative z-20 min-h-screen flex flex-col ${darkMode ? 'dark bg-gray-900/10' : 'bg-gray-50/30'}`}
-          //  style={{ backdropFilter: 'blur(3px)', transition: 'background-color 1s ease-in-out' }}
-           >
+      <div className={`relative z-20 min-h-screen flex flex-col ${darkMode ? 'dark bg-gray-900/10' : 'bg-gray-50/30'}`}>
         <div className="fixed top-2 right-2 p-4 flex gap-2 sm:gap-4 z-50 ">
           <motion.button
             onClick={toggleLanguage}
@@ -459,72 +460,6 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
           <p>© 2025 Nguyễn Văn Quyên. Front-end Developer.</p>
         </motion.footer>
       </div>
-      <style>{`
-        @keyframes ripple {
-          0% {
-            width: 10px;
-            height: 10px;
-            opacity: 0.8;
-          }
-          100% {
-            width: ${Math.max(windowSize.width, windowSize.height) * 3}px;
-            height: ${Math.max(windowSize.width, windowSize.height) * 3}px;
-            opacity: 0;
-          }
-        }
-        
-        /* Hiệu ứng sao nhấp nháy */
-        @keyframes twinkle {
-          0% {
-            opacity: ${prevDarkMode ? '0.5' : '0.3'};
-            transform: scale(1);
-            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
-          }
-          100% {
-            opacity: ${prevDarkMode ? '0.5' : '0.3'};
-            transform: scale(1);
-            filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
-          }
-        }
-        
-        /* Hiệu ứng sao lớn nhấp nháy */
-        @keyframes twinkleLarge {
-          0% {
-            opacity: ${prevDarkMode ? '0.7' : '0.5'};
-            transform: scale(1);
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
-          }
-          50% {
-            opacity: 1;
-            transform: scale(1.5);
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
-          }
-          100% {
-            opacity: ${prevDarkMode ? '0.7' : '0.5'};
-            transform: scale(1);
-            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
-          }
-        }
-
-        /* Thêm hiệu ứng mượt mà cho tất cả */
-        .dark * {
-          transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity;
-          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-          transition-duration: 800ms;
-        }
-        
-        /* Tối ưu performance cho mobile */
-        @media (max-width: 768px) {
-          .dark * {
-            transition-duration: 600ms;
-          }
-        }
-      `}</style>
     </div>
   );
 };
