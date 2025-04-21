@@ -1,66 +1,17 @@
-/* Hiệu ứng ripple khi toggle mode */
-@keyframes ripple {
-    0% {
-      width: 10px;
-      height: 10px;
-      opacity: 0.8;
-    }
-    100% {
-      width: calc(max(100vw, 100vh) * 3);
-      height: calc(max(100vw, 100vh) * 3);
-      opacity: 0;
-    }
-  }
-  
-  /* Hiệu ứng sao nhấp nháy */
-  @keyframes twinkle {
-    0% {
-      opacity: var(--star-opacity-min, 0.3);
-      transform: scale(1);
-      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.2);
-      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
-    }
-    100% {
-      opacity: var(--star-opacity-min, 0.3);
-      transform: scale(1);
-      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
-    }
-  }
-  
-  /* Hiệu ứng sao lớn nhấp nháy */
-  @keyframes twinkleLarge {
-    0% {
-      opacity: var(--large-star-opacity-min, 0.5);
-      transform: scale(1);
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
-    }
-    50% {
-      opacity: 1;
-      transform: scale(1.5);
-      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
-    }
-    100% {
-      opacity: var(--large-star-opacity-min, 0.5);
-      transform: scale(1);
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
-    }
-  }
-  
-  /* Thêm hiệu ứng mượt mà cho tất cả */
-  .dark * {
-    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 800ms;
-  }
-  
-  /* Thiết lập CSS biến để dễ dàng thay đổi giá trị opacity */
-  :root {
+/* CSS Variables cho các tham số animation */
+:root {
+    --transition-duration: 800ms;
+    --transition-duration-mobile: 600ms;
+    --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    --ripple-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+    
     --star-opacity-min: 0.3;
+    --star-opacity-max: 1;
     --large-star-opacity-min: 0.5;
+    --large-star-opacity-max: 1;
+    
+    --background-transition-duration: 1.2s;
+    --overlay-transition-duration: 1s;
   }
   
   .dark {
@@ -68,23 +19,155 @@
     --large-star-opacity-min: 0.7;
   }
   
-  /* Tối ưu performance cho mobile */
+  /* Tối ưu animation với transform thay vì width/height */
+  @keyframes ripple {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(300);
+      opacity: 0;
+    }
+  }
+  
+  /* Tối ưu hiệu ứng sao nhấp nháy với will-change và hardware acceleration */
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: var(--star-opacity-min);
+      transform: scale(1);
+      filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.5));
+    }
+    50% {
+      opacity: var(--star-opacity-max);
+      transform: scale(1.2);
+      filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.9));
+    }
+  }
+  
+  /* Tối ưu hiệu ứng sao lớn nhấp nháy */
+  @keyframes twinkleLarge {
+    0%, 100% {
+      opacity: var(--large-star-opacity-min);
+      transform: scale(1);
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+    }
+    50% {
+      opacity: var(--large-star-opacity-max);
+      transform: scale(1.5);
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 1)) drop-shadow(0 0 30px rgba(255, 255, 255, 0.5));
+    }
+  }
+  
+  /* Animations for dark/light mode transitions */
+  .background-image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-size: cover;
+    background-position: center;
+    transition: opacity var(--background-transition-duration) ease-in-out;
+    will-change: opacity;
+  }
+  
+  .overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity var(--overlay-transition-duration) ease-in-out;
+    will-change: opacity;
+  }
+  
+  /* Star styling */
+  .star {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+    will-change: transform, opacity;
+  }
+  
+  .star-shape {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+    will-change: transform, opacity, filter;
+  }
+  
+  .ripple-effect {
+    position: absolute;
+    z-index: 10;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translate(-50%, -50%);
+    opacity: 0.6;
+    will-change: transform, opacity;
+    animation: ripple 1.2s var(--ripple-timing-function) forwards;
+  }
+  
+  /* Optimized transitions */
+  .content-wrapper {
+    position: relative;
+    z-index: 20;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: background-color var(--transition-duration) ease-in-out;
+  }
+  
+  .main-content {
+    transition: background-color var(--transition-duration) ease-in-out;
+    backdrop-filter: blur(3px);
+  }
+  
+  /* Apply optimized transitions to all elements in dark mode */
+  .dark * {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity;
+    transition-timing-function: var(--transition-timing-function);
+    transition-duration: var(--transition-duration);
+  }
+  
+  /* Optimizations for particles */
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    z-index: 10;
+    will-change: transform, opacity, width, height;
+  }
+  
+  /* Performance optimizations for mobile */
   @media (max-width: 768px) {
-    .dark * {
-      transition-duration: 600ms;
+    :root {
+      --transition-duration: var(--transition-duration-mobile);
+      --background-transition-duration: 1s;
+      --overlay-transition-duration: 0.8s;
     }
     
-    @keyframes ripple {
-      0% {
-        width: 10px;
-        height: 10px;
-        opacity: 0.8;
+    /* Reduce animation complexity on mobile */
+    .star-shape {
+      filter: none !important;
+    }
+    
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: var(--star-opacity-min);
+        transform: scale(1);
       }
-      100% {
-        width: calc(max(100vw, 100vh) * 3);
-        height: calc(max(100vw, 100vh) * 3);
-        opacity: 0;
-        animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+      50% {
+        opacity: var(--star-opacity-max);
+        transform: scale(1.1);
+      }
+    }
+    
+    @keyframes twinkleLarge {
+      0%, 100% {
+        opacity: var(--large-star-opacity-min);
+        transform: scale(1);
+      }
+      50% {
+        opacity: var(--large-star-opacity-max);
+        transform: scale(1.3);
       }
     }
   }

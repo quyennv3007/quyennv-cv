@@ -1,4 +1,4 @@
-import React, { ReactNode, useState, useEffect, useRef } from 'react';
+import React, { ReactNode, useState, useEffect, useRef, memo, useMemo } from 'react';
 import Navigation from './Navigation';
 import { useTranslation } from 'react-i18next';
 import { Moon, Sun } from 'lucide-react';
@@ -24,6 +24,184 @@ interface Star {
   points?: number;
   hasPoints?: boolean;
 }
+
+// Memoized Star components
+const PointStar = memo(({ star }: { star: Star }) => {
+  const outerRadius = star.size * 2;
+  const innerRadius = star.size * 0.4;
+  const points = star.points || 4;
+  
+  const pointsString = useMemo(() => {
+    return Array.from({ length: points * 2 }, (_, i) => {
+      const radius = i % 2 === 0 ? outerRadius : innerRadius;
+      const angle = (Math.PI * i) / points;
+      const x = radius * Math.sin(angle);
+      const y = radius * Math.cos(angle);
+      return `${x},${y}`;
+    }).join(' ');
+  }, [points, outerRadius, innerRadius]);
+  
+  return (
+    <svg
+      className="star-shape"
+      style={{
+        left: star.x,
+        top: star.y,
+        width: outerRadius * 2,
+        height: outerRadius * 2,
+        opacity: star.opacity,
+        animation: `twinkle ${star.blinkSpeed}s ease-in-out infinite`,
+        filter: `drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))`,
+      }}
+      width={outerRadius * 2}
+      height={outerRadius * 2}
+      viewBox={`${-outerRadius} ${-outerRadius} ${outerRadius * 2} ${outerRadius * 2}`}
+    >
+      <polygon points={pointsString} fill="white" />
+    </svg>
+  );
+});
+
+const CircleStar = memo(({ star }: { star: Star }) => {
+  return (
+    <div
+      className="star"
+      style={{
+        left: star.x,
+        top: star.y,
+        width: star.size,
+        height: star.size,
+        opacity: star.opacity,
+        animation: `twinkle ${star.blinkSpeed}s ease-in-out infinite`,
+        boxShadow: `0 0 ${star.size + 1}px rgba(255, 255, 255, 0.8)`,
+        borderRadius: '50%',
+        backgroundColor: 'white'
+      }}
+    />
+  );
+});
+
+const LargeStar = memo(({ star }: { star: Star }) => {
+  const outerRadius = star.size * 2;
+  const innerRadius = star.size * 0.5;
+  const points = star.points || 4;
+  
+  const pointsString = useMemo(() => {
+    return Array.from({ length: points * 2 }, (_, i) => {
+      const radius = i % 2 === 0 ? outerRadius : innerRadius;
+      const angle = (Math.PI * i) / points;
+      const x = radius * Math.sin(angle);
+      const y = radius * Math.cos(angle);
+      return `${x},${y}`;
+    }).join(' ');
+  }, [points, outerRadius, innerRadius]);
+  
+  return (
+    <svg
+      className="star-shape"
+      style={{
+        left: star.x,
+        top: star.y,
+        width: outerRadius * 2,
+        height: outerRadius * 2,
+        opacity: star.opacity,
+        animation: `twinkleLarge ${star.blinkSpeed}s ease-in-out infinite`,
+        filter: `drop-shadow(0 0 ${star.size}px rgba(255, 255, 255, 0.9))`,
+      }}
+      width={outerRadius * 2}
+      height={outerRadius * 2}
+      viewBox={`${-outerRadius} ${-outerRadius} ${outerRadius * 2} ${outerRadius * 2}`}
+    >
+      <polygon points={pointsString} fill="white" />
+    </svg>
+  );
+});
+
+// Memoized Particle component
+const Particle = memo(({ particle, index, prevDarkMode, particleSprayRadius }: { 
+  particle: { x: number, y: number, size: number, speed: number }, 
+  index: number, 
+  prevDarkMode: boolean, 
+  particleSprayRadius: number 
+}) => {
+  return (
+    <motion.div
+      key={index}
+      className={`particle ${prevDarkMode ? 'bg-yellow-300' : 'bg-blue-400'}`}
+      initial={{ 
+        x: particle.x, 
+        y: particle.y, 
+        opacity: 1, 
+        width: particle.size, 
+        height: particle.size 
+      }}
+      animate={{ 
+        x: particle.x + (Math.random() * particleSprayRadius - particleSprayRadius/2), 
+        y: particle.y + (Math.random() * particleSprayRadius - particleSprayRadius/2), 
+        opacity: 0,
+        width: particle.size * 2,
+        height: particle.size * 2
+      }}
+      transition={{ 
+        duration: 1.5 * particle.speed,
+        ease: "easeOut"
+      }}
+    />
+  );
+});
+
+// Memoized Stars list
+const StarsList = memo(({ stars, darkMode }: { stars: Star[], darkMode: boolean }) => {
+  // Only render if stars should be visible
+  if (!stars.length) return null;
+  
+  return (
+    <>
+      {stars.map((star) => (
+        star.hasPoints 
+          ? <PointStar key={star.id} star={star} /> 
+          : <CircleStar key={star.id} star={star} />
+      ))}
+    </>
+  );
+});
+
+// Memoized Large Stars list
+const LargeStarsList = memo(({ largeStars, darkMode }: { largeStars: Star[], darkMode: boolean }) => {
+  // Only render if we're in dark mode and have stars
+  if (!darkMode || !largeStars.length) return null;
+  
+  return (
+    <>
+      {largeStars.map((star) => (
+        <LargeStar key={`large-${star.id}`} star={star} />
+      ))}
+    </>
+  );
+});
+
+// Memoized Particles list
+const ParticlesList = memo(({ particles, prevDarkMode, particleSprayRadius }: { 
+  particles: Array<{ x: number, y: number, size: number, speed: number }>, 
+  prevDarkMode: boolean, 
+  particleSprayRadius: number 
+}) => {
+  if (!particles.length) return null;
+  
+  return (
+    <>
+      {particles.map((particle, index) => (
+        <Particle 
+          key={index} 
+          particle={particle} 
+          index={index} 
+          prevDarkMode={prevDarkMode} 
+          particleSprayRadius={particleSprayRadius} 
+        />
+      ))}
+    </>
+  );
+});
 
 const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) => {
   const { i18n } = useTranslation();
@@ -51,23 +229,40 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     setPrevDarkMode(darkMode);
   }, [darkMode]);
 
-  // Theo dõi kích thước cửa sổ để responsive
+  // Theo dõi kích thước cửa sổ để responsive với throttle
   useEffect(() => {
+    let timeoutId: number | undefined;
+    
     const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
+      // Throttle resize events to improve performance
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      
+      timeoutId = window.setTimeout(() => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+      }, 200); // Throttle to 200ms
     };
 
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   // Tạo các ngôi sao khi component mount hoặc khi chuyển sang dark mode
   useEffect(() => {
+    // Tối ưu bằng cách chỉ tạo sao khi thực sự cần thiết
+    if (stars.length > 0 && !darkMode) return;
+    
     const createStars = () => {
-      const starCount = Math.floor((windowSize.width * windowSize.height) / 10000); // Số lượng sao tùy thuộc vào kích thước màn hình
+      // Giảm số lượng sao trên mobile
+      const densityFactor = windowSize.width < 768 ? 15000 : 10000;
+      const starCount = Math.floor((windowSize.width * windowSize.height) / densityFactor);
       const newStars: Star[] = [];
       
       for (let i = 0; i < starCount; i++) {
@@ -93,7 +288,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
         let y: number;
         if (!darkMode) {
           // Trong light mode, chỉ xuất hiện ở 1/3 màn hình phía trên
-          y = Math.random() * (windowSize.height );
+          y = Math.random() * (windowSize.height);
         } else {
           // Trong dark mode, xuất hiện trên toàn màn hình
           y = Math.random() * windowSize.height;
@@ -117,7 +312,8 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     };
     
     const createLargeStars = () => {
-      const largeStarCount = Math.floor(windowSize.width / 120); // Khoảng 15-20 sao lớn trên màn hình rộng
+      // Giảm số lượng sao lớn trên mobile
+      const largeStarCount = Math.floor(windowSize.width / (windowSize.width < 768 ? 180 : 120));
       const newLargeStars: Star[] = [];
       
       for (let i = 0; i < largeStarCount; i++) {
@@ -149,7 +345,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
           y = Math.random() * windowSize.height;
         }
         
-        const points = Math.floor(Math.random() * 5) + 4; // 4 đến 8 cạnh
+        const points = Math.floor(Math.random() * 3) + 4; // 4 đến 6 cạnh
         
         newLargeStars.push({
           id: i,
@@ -168,9 +364,16 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     
     // Tạo sao dựa trên mode
     setStars(createStars());
-    setLargeStars(createLargeStars());
+    if (darkMode) {
+      setLargeStars(createLargeStars());
+    }
     
-  }, [darkMode, windowSize]);
+  }, [darkMode, windowSize, stars.length]);
+
+  // Tính toán spray radius cho particles dựa trên kích thước màn hình - memoize giá trị
+  const particleSprayRadius = useMemo(() => 
+    windowSize.width < 768 ? 100 : 200
+  , [windowSize.width]);
 
   // Xử lý chuyển đổi dark mode với hiệu ứng
   const handleToggleDarkMode = (e: React.MouseEvent) => {
@@ -185,17 +388,17 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     }
 
     // Điều chỉnh số lượng particles dựa trên kích thước màn hình
-    const particleCount = windowSize.width < 768 ? 10 : 20;
+    const particleCount = windowSize.width < 768 ? 8 : 15;
     
     // Điều chỉnh kích thước particle dựa trên kích thước màn hình
-    const baseSize = windowSize.width < 768 ? 4 : 8;
+    const baseSize = windowSize.width < 768 ? 4 : 6;
     
     // Tạo các particles cho hiệu ứng
     const newParticles = Array.from({ length: particleCount }, () => ({
       x: ripplePosition.x,
       y: ripplePosition.y,
       size: Math.random() * baseSize + 2,
-      speed: Math.random() * 3 + 1
+      speed: Math.random() * 2 + 1
     }));
     setParticles(newParticles);
 
@@ -203,8 +406,8 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     setShowRipple(true);
 
     // Thời gian animation ngắn hơn trên mobile
-    const animationTime = windowSize.width < 768 ? 600 : 800;
-    const cleanupTime = windowSize.width < 768 ? 800 : 1000;
+    const animationTime = windowSize.width < 768 ? 500 : 700;
+    const cleanupTime = windowSize.width < 768 ? 700 : 900;
 
     // Đợi animation hoàn thành rồi mới chuyển trạng thái
     setTimeout(() => {
@@ -218,9 +421,6 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     }, animationTime);
   };
 
-  // Tính toán spray radius cho particles dựa trên kích thước màn hình
-  const particleSprayRadius = windowSize.width < 768 ? 100 : 200;
-
   return (
     <div 
       ref={containerRef}
@@ -228,181 +428,64 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     >
       {/* Lớp background cố định - light mode */}
       <div 
-        className="absolute inset-0 z-0"
+        className="background-image"
         style={{
           backgroundImage: `url(${whiteClouds})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
           opacity: darkMode ? 0 : 1,
-          transition: 'opacity 1.2s ease-in-out'
         }}
       />
 
       {/* Lớp background cố định - dark mode */}
       <div 
-        className="absolute inset-0 z-0"
+        className="background-image"
         style={{
           backgroundImage: `url(${backround2})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
           opacity: darkMode ? 1 : 0,
-          transition: 'opacity 1.2s ease-in-out'
         }}
       />
 
-      {/* Hiệu ứng các ngôi sao nhấp nháy */}
-      {(darkMode || !darkMode) && stars.map((star) => {
-        if (star.hasPoints) {
-          // Sao có cạnh
-          const outerRadius = star.size * 2;
-          const innerRadius = star.size * 0.4;
-          const points = star.points || 4;
-          
-          return (
-            <svg
-              key={star.id}
-              className="absolute z-5 pointer-events-none"
-              style={{
-                left: star.x,
-                top: star.y,
-                width: outerRadius * 2,
-                height: outerRadius * 2,
-                opacity: star.opacity,
-                animation: `twinkle ${star.blinkSpeed}s ease-in-out infinite`,
-                filter: `drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))`,
-              }}
-              width={outerRadius * 2}
-              height={outerRadius * 2}
-              viewBox={`${-outerRadius} ${-outerRadius} ${outerRadius * 2} ${outerRadius * 2}`}
-            >
-              <polygon
-                points={Array.from({ length: points * 2 }, (_, i) => {
-                  const radius = i % 2 === 0 ? outerRadius : innerRadius;
-                  const angle = (Math.PI * i) / points;
-                  const x = radius * Math.sin(angle);
-                  const y = radius * Math.cos(angle);
-                  return `${x},${y}`;
-                }).join(' ')}
-                fill="white"
-              />
-            </svg>
-          );
-        } else {
-          // Sao tròn
-          return (
-            <div
-              key={star.id}
-              className="absolute rounded-full bg-white z-5 pointer-events-none"
-              style={{
-                left: star.x,
-                top: star.y,
-                width: star.size,
-                height: star.size,
-                opacity: star.opacity,
-                animation: `twinkle ${star.blinkSpeed}s ease-in-out infinite`,
-                boxShadow: `0 0 ${star.size + 1}px rgba(255, 255, 255, 0.8)`,
-              }}
-            />
-          );
-        }
-      })}
+      {/* Hiệu ứng các ngôi sao nhấp nháy - với memo và lazy rendering */}
+      <StarsList stars={stars} darkMode={darkMode} />
       
-      {/* Hiệu ứng các ngôi sao lớn nhấp nháy */}
-      {(darkMode) && largeStars.map((star) => {
-        const outerRadius = star.size * 2;
-        const innerRadius = star.size * 0.5;
-        const points = star.points || 4;
-        
-        return (
-          <svg
-            key={`large-${star.id}`}
-            className="absolute z-5 pointer-events-none"
-            style={{
-              left: star.x,
-              top: star.y,
-              width: outerRadius * 2,
-              height: outerRadius * 2,
-              opacity: star.opacity,
-              animation: `twinkleLarge ${star.blinkSpeed}s ease-in-out infinite`,
-              filter: `drop-shadow(0 0 ${star.size}px rgba(255, 255, 255, 0.9))`,
-            }}
-            width={outerRadius * 2}
-            height={outerRadius * 2}
-            viewBox={`${-outerRadius} ${-outerRadius} ${outerRadius * 2} ${outerRadius * 2}`}
-          >
-            <polygon
-              points={Array.from({ length: points * 2 }, (_, i) => {
-                const radius = i % 2 === 0 ? outerRadius : innerRadius;
-                const angle = (Math.PI * i) / points;
-                const x = radius * Math.sin(angle);
-                const y = radius * Math.cos(angle);
-                return `${x},${y}`;
-              }).join(' ')}
-              fill="white"
-            />
-          </svg>
-        );
-      })}
+      {/* Hiệu ứng các ngôi sao lớn nhấp nháy - với memo và lazy rendering */}
+      <LargeStarsList largeStars={largeStars} darkMode={darkMode} />
 
       {/* Overlay cho light mode - có thể điều chỉnh opacity */}
       <div 
-        className="absolute inset-0 z-0 bg-white pointer-events-none"
+        className="overlay bg-white"
         style={{
           opacity: darkMode ? 0 : 0.1, // Chỉ áp dụng overlay rất nhẹ cho light mode
-          transition: 'opacity 1s ease-in-out'
         }}
       />
 
       {/* Overlay cho dark mode - giảm opacity xuống để hình nền rõ hơn */}
       <div 
-        className="absolute inset-0 z-0 bg-black pointer-events-none"
+        className="overlay bg-black"
         style={{
-          opacity: darkMode ? 0.3 : 0, // Giảm opacity từ 0.3 xuống 0.15
-          transition: 'opacity 1s ease-in-out'
+          opacity: darkMode ? 0.3 : 0, // Giảm opacity
         }}
       />
 
       {/* Hiệu ứng ripple */}
       {showRipple && (
         <div 
-          className={`absolute rounded-full z-10 ${darkMode ? 'bg-gray-400' : 'bg-white'}`} 
+          className={`ripple-effect ${darkMode ? 'bg-gray-400' : 'bg-white'}`}
           style={{
             top: ripplePosition.y,
             left: ripplePosition.x,
-            transform: 'translate(-50%, -50%)',
-            width: '10px',
-            height: '10px',
-            animation: `ripple 1.2s cubic-bezier(0.22, 0.61, 0.36, 1) forwards`,
-            opacity: 0.6
           }}
         />
       )}
 
-      {/* Hiệu ứng particles */}
-      {particles.map((particle, index) => (
-        <motion.div
-          key={index}
-          className={`absolute rounded-full z-10 ${prevDarkMode ? 'bg-yellow-300' : 'bg-blue-400'}`}
-          initial={{ 
-            x: particle.x, 
-            y: particle.y, 
-            opacity: 1, 
-            width: particle.size, 
-            height: particle.size 
-          }}
-          animate={{ 
-            x: particle.x + (Math.random() * particleSprayRadius - particleSprayRadius/2), 
-            y: particle.y + (Math.random() * particleSprayRadius - particleSprayRadius/2), 
-            opacity: 0,
-            width: particle.size * 2,
-            height: particle.size * 2
-          }}
-          transition={{ duration: 1.5 * particle.speed }}
-        />
-      ))}
+      {/* Hiệu ứng particles - với memo và lazy rendering */}
+      <ParticlesList 
+        particles={particles} 
+        prevDarkMode={prevDarkMode} 
+        particleSprayRadius={particleSprayRadius} 
+      />
 
       {/* Content wrapper - giảm opacity background để thấy hình nền rõ hơn */}
-      <div className={`relative z-20 min-h-screen flex flex-col ${darkMode ? 'dark bg-gray-900/10' : 'bg-gray-50/30'}`}>
+      <div className={`content-wrapper ${darkMode ? 'dark bg-gray-900/10' : 'bg-gray-50/30'}`}>
         <div className="fixed top-2 right-2 p-4 flex gap-2 sm:gap-4 z-50 ">
           <motion.button
             onClick={toggleLanguage}
@@ -440,12 +523,11 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
         <Navigation darkMode={darkMode} />  
         
         <motion.main 
-      className={`container mx-auto px-2 sm:px-4 pt-2 max-w-4xl flex-grow backdrop-blur-sm
-        ${darkMode ? 'bg-gray-900/60' : 'bg-white/40'} rounded-none md:rounded-lg mt-0 md:mt-4 shadow-lg`}
+          className={`main-content container mx-auto px-2 sm:px-4 pt-2 max-w-4xl flex-grow 
+            ${darkMode ? 'bg-gray-900/60' : 'bg-white/40'} rounded-none md:rounded-lg mt-0 md:mt-4 shadow-lg`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
-          style={{ transition: 'background-color 1s ease-in-out' }}
         >
           {children}
         </motion.main>
