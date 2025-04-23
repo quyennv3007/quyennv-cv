@@ -3,8 +3,8 @@ import Navigation from './Navigation';
 import { useTranslation } from 'react-i18next';
 import { Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import backround2 from '../assets/image/backround2.jpg'
-import whiteClouds from '../assets/image/whiteClouds.jpg'
+import backround2 from '../../public/assets/images/backround2.jpg'
+import whiteClouds from '../../public/assets/images/whiteClouds.jpg'
 import './Layout.css';
 
 interface LayoutProps {
@@ -489,7 +489,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
         <div className="fixed top-2 right-2 p-4 flex gap-2 sm:gap-4 z-50 ">
           <motion.button
             onClick={toggleLanguage}
-            className={`px-2 sm:px-3 py-1 rounded-lg bg-gradient-to-r from-blue-500 to-blue-400 text-white hover:bg-blue-700 transition-colors text-sm sm:text-base`}
+            className={`px-2 sm:px-3 py-1 rounded-lg bg-gradient-to-r from-cyan-500 to-cyan-400 text-white hover:bg-blue-700 transition-colors text-sm sm:text-base`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -513,7 +513,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
                 {darkMode ? (
                   <Sun className="text-yellow-300 w-5 h-5 sm:w-6 sm:h-6" />
                 ) : (
-                  <Moon className="text-blue-600 w-5 h-5 sm:w-6 sm:h-6" />
+                  <Moon className="text-cyan-500 w-5 h-5 sm:w-6 sm:h-6" />
                 )}
               </motion.div>
             </AnimatePresence>
@@ -524,7 +524,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
         
         <motion.main 
           className={`main-content container mx-auto px-2 sm:px-4 pt-2 max-w-4xl flex-grow 
-            ${darkMode ? 'bg-gray-900/60' : 'bg-white/40'} rounded-none md:rounded-lg mt-0 md:mt-4 shadow-lg`}
+            ${darkMode ? 'bg-gray-900/60' : 'bg-white/60'} rounded-none md:rounded-lg mt-0 md:mt-4 shadow-lg`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}

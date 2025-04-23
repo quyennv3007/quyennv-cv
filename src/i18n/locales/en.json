@@ -1,6 +1,10 @@
 {
-  "Location":"Tan Quy Ward, District 7, Ho Chi Minh City, Vietnam",
-  "Gender":"Male",
+  "Location": "Tan Quy Ward, District 7, Ho Chi Minh City, Vietnam",
+  "Gender": "Male",
+  "greeting": {
+    "hello": "Hello, It's Me",
+    "intro": "I'm a"
+  },
   "nav": {
     "home": "Home",
     "about": "About",
@@ -16,13 +20,16 @@
   },
   "about": {
     "title": "About Me",
-    "content": "Passionate front-end developer with 2 years of experience building modern web applications. Skilled in React ecosystem and committed to creating exceptional user experiences. Looking to leverage my technical expertise and creativity in a challenging front-end role."
+    "content": "I am a Front-end Developer with nearly 2 years of experience, specializing in building web applications using ReactJS and popular UI libraries such as Ant Design and Material UI. I have strong skills in creating user-friendly, high-performance, and responsive interfaces across various devices. In addition, I possess basic knowledge of backend development and APIs, as well as experience working in teams and using Git. My goal is to continuously improve my programming skills and contribute to high-quality product development projects."
   },
   "skills": {
-    "title": "Skills",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "tools": "Tools"
+    "skills": "skills",
+    "technical": "Technical Skills",
+    "professional": "Professional Skills",
+    "creativity": "Creativity",
+    "communication": "Communication",
+    "problemSolving": "Problem Solving",
+    "teamwork": "Teamwork"
   },
   "experience": {
     "title": "Work Experience",

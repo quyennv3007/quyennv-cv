@@ -34,7 +34,7 @@ function App() {
           path="/" 
           element={
             <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
-              <HomePage />
+              <HomePage darkMode={darkMode}/>
             </Layout>
           } 
         />

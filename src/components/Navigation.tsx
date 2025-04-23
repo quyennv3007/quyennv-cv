@@ -127,12 +127,12 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode }) => {
                 className="px-3 py-2 text-sm font-medium transition-all duration-300 relative group"
               >
                 <span className={`${activeSection === item.id && location.pathname === '/'
-                  ? 'text-blue-600 dark:text-blue-400'
-                  : 'text-gray-700 dark:text-gray-200 group-hover:text-blue-600 dark:group-hover:text-blue-400'
+                  ? 'text-cyan-500 dark:text-cyan-400  font-normal'
+                  : 'text-gray-700 dark:text-gray-200 group-hover:text-cyan-500 dark:group-hover:text-cyan-400  font-normal'
                   }`}>
                   {item.label}
                 </span>
-                <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full ${activeSection === item.id && location.pathname === '/' ? 'w-full' : ''
+                <span className={`absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-500 dark:bg-cyan-400 transition-all duration-300 group-hover:w-full ${activeSection === item.id && location.pathname === '/' ? 'w-full' : ''
                   }`}></span>
               </button>
             ))}
@@ -150,13 +150,13 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode }) => {
                 className="flex flex-col items-center relative group"
               >
                 <span className={`${activeSection === item.id && location.pathname === '/'
-                  ? 'text-blue-600 dark:text-blue-400 pb-1 transition-all duration-300'
-                  : 'text-gray-700 dark:text-gray-200 pb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400  transition-all duration-300'
+                  ? 'text-cyan-500 dark:text-cyan-400 pb-1 transition-all duration-300'
+                  : 'text-gray-700 dark:text-gray-200 pb-1 group-hover:text-cyan-500 dark:group-hover:text-cyan-400  transition-all duration-300'
                   }`}>
                   {scrolled ? <item.icon size={20} className='transition-all duration-300 ' /> : null}
 
                 </span>
-                <span className={`absolute bottom-0 left-0 w-0 h-0.5  bg-blue-600 dark:bg-blue-400 transition-all duration-300 group-hover:w-full ${activeSection === item.id && location.pathname === '/' ? 'w-full' : ''
+                <span className={`absolute bottom-0 left-0 w-0 h-0.5  bg-cyan-500 dark:bg-cyan-400 transition-all duration-300 group-hover:w-full ${activeSection === item.id && location.pathname === '/' ? 'w-full' : ''
                   }`}></span>
               </button>
             ))}

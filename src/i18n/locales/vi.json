@@ -1,6 +1,10 @@
 {
-  "Location":"Tân Quy, Quận 7, Hồ Chí Minh, Việt Nam",
-  "Gender":"Nam",
+  "Location": "Tân Quy, Quận 7, Hồ Chí Minh, Việt Nam",
+  "Gender": "Nam",
+  "greeting": {
+    "hello": "Xin chào, là tôi đây",
+    "intro": "Tôi là"
+  },
   "nav": {
     "home": "Trang chủ",
     "about": "Giới thiệu",
@@ -16,13 +20,7 @@
   },
   "about": {
     "title": "Giới thiệu",
-    "content": "Lập trình viên front-end với 2 năm kinh nghiệm xây dựng ứng dụng web hiện đại. Thành thạo hệ sinh thái React và cam kết tạo ra trải nghiệm người dùng xuất sắc. Mong muốn vận dụng chuyên môn kỹ thuật và sáng tạo vào vị trí front-end đầy thách thức."
-  },
-  "skills": {
-    "title": "Kỹ năng",
-    "frontend": "Frontend",
-    "backend": "Backend",
-    "tools": "Công cụ"
+    "content": "Tôi là lập trình viên Front-end với gần 2 năm kinh nghiệm, chuyên phát triển ứng dụng web bằng ReactJS và các thư viện UI như Ant Design, Material UI. Tôi có khả năng xây dựng giao diện thân thiện, tối ưu hiệu suất và responsive trên nhiều thiết bị. Ngoài ra, tôi có kiến thức cơ bản về backend và API, cùng kỹ năng làm việc nhóm và sử dụng Git. Mục tiêu của tôi là không ngừng nâng cao kỹ năng lập trình và đóng góp vào các dự án sản phẩm chất lượng cao."
   },
   "experience": {
     "title": "Kinh nghiệm làm việc",
@@ -55,6 +53,16 @@
     "degree": "Khoa học máy tính",
     "school": "Tên trường đại học",
     "period": "2018 - 2022"
+  },
+  "skills": {
+    "skills": "Kỹ năng",
+    "technical": "Kỹ năng kỹ thuật",
+    "professional": "Kỹ năng chuyên môn",
+    "creativity": "Sáng tạo",
+    "communication": "Giao tiếp",
+    "problemSolving": "Giải quyết vấn đề",
+    "teamwork": "Làm việc nhóm"
+
   },
   "languages": {
     "title": "Ngôn ngữ",

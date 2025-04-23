@@ -32,6 +32,18 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-25px)' },
         },
+        'star-movement-bottom': {
+          '0%': { transform: 'translate(0%, 0%)', opacity: '1' },
+          '100%': { transform: 'translate(-100%, 0%)', opacity: '0' },
+        },
+        'star-movement-top': {
+          '0%': { transform: 'translate(0%, 0%)', opacity: '1' },
+          '100%': { transform: 'translate(100%, 0%)', opacity: '0' },
+        },
+        shine: {
+          '0%': { 'background-position': '100%' },
+          '100%': { 'background-position': '-100%' },
+        },
       },
       animation: {
         fadeIn: 'fadeIn 0.6s ease-out',
@@ -40,6 +52,9 @@ export default {
         slideLeft: 'slideLeft 0.6s ease-out',
         zoomIn: 'zoomIn 0.6s ease-out',
         bounce: 'bounce 1s ease-in-out infinite',
+        'star-movement-bottom': 'star-movement-bottom linear infinite alternate',
+        'star-movement-top': 'star-movement-top linear infinite alternate',
+        shine: 'shine 5s linear infinite',
       },
     },
   },

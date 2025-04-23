@@ -6,11 +6,13 @@ import Experience from '../sections/Experience';
 import Projects from '../sections/Projects';
 // import Education from '../sections/Education';
 import Contact from '../sections/Contact';
-
-const HomePage: React.FC = () => {
+interface HomeProps {
+  darkMode?: boolean;
+}
+const HomePage: React.FC<HomeProps> = ({darkMode}) => {
   return (
     <>
-      <Home />
+      <Home darkMode={darkMode}/>
       <About />
       <Skills />
       <Experience />
