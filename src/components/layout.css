@@ -1,4 +1,8 @@
 /* CSS Variables cho các tham số animation */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
     --transition-duration: 800ms;
     --transition-duration-mobile: 600ms;
