@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import React, { useEffect, useRef, useState, ReactNode } from 'react';
 
 interface AnimatedSectionProps {
