@@ -5,7 +5,7 @@ import { Moon, Sun } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import backround2 from '../../public/assets/images/backround2.jpg'
 import whiteClouds from '../../public/assets/images/whiteClouds.jpg'
-import './Layout.css';
+import './layout.css';
 
 interface LayoutProps {
   darkMode: boolean;
