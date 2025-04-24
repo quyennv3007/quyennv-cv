@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Layout from './components/layout';
+import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import ProjectDetail from './pages/ProjectDetail';
 import './i18n';
