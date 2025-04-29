@@ -33,18 +33,23 @@
   },
   "experience": {
     "title": "Work Experience",
+    "Responsibilities": "Responsibilities",
     "current": {
       "title": "Front-end Developer",
-      "company": "Company Name",
-      "period": "2022 - Present",
+      "company": "Vietmap",
+      "period": "3/2023 - Present",
       "responsibilities": [
-        "Developed and maintained multiple React-based web applications",
-        "Collaborated with design team to implement responsive UI components",
-        "Improved application performance and loading times by 40%"
-      ]
+        "Developed and maintained multiple web applications using React",
+        "Collaborated with the design team to implement responsive user interfaces",
+        "Contributed to projects using Next.js and Vue.js frameworks",
+        "Worked with low-code platforms such as Jet Admin and Appsmith to build internal tools and dashboards",
+        "Optimized user experience and ensured cross-browser and cross-device compatibility"
+      ],
+      "summary": "My professional journey and work experience in the tech industry."
     }
   },
   "projects": {
+    "timeline":"Timeline",
     "title": "Projects",
     "viewDetails": "View Details",
     "backToProjects": "Back to Projects",
@@ -55,7 +60,12 @@
     "links": "Project Links",
     "sourceCode": "Source Code",
     "liveDemo": "Live Demo",
-    "notFound": "Project Not Found"
+    "notFound": "Project Not Found",
+    "warehouse": "Warehouse management application for VietMap's warranty system, helping to track inventory, returns, and warranty replacements.",
+    "salePlan": "The application supports VietMap's sales team in planning sales by quarter and year.",
+    "callInsight": "The application analyzes calls, helping the customer service department assess employee skills and performance.",
+    "appSmith": "The admin application for VietMap's sales system, enabling dealers to purchase products directly through the VietMap platform.",
+    "jetadmin": "An internal application system, including payment management, SIM management, and Logitech device management..."
   },
   "education": {
     "title": "Education",

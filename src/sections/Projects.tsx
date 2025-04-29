@@ -1,133 +1,118 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
-import FadeIn from '../components/animations/FadeIn';
-import Stagger from '../components/animations/Stagger';
+import React from "react";
+import { useTranslation } from "react-i18next";
+import FadeIn from "../components/animations/FadeIn";
+import Carousel from "../components/Carousel";
+import BlurText from "../components/BlurText";
+import {FaCss3Alt, FaJs, FaLess, FaReact } from "react-icons/fa6";
+import { SiAntdesign, SiMui, SiNextdotjs, SiRedux, SiTailwindcss } from "react-icons/si";
+import appsmith from '../assets/image/favicon.png'
+import jetadmin from '../assets/image/jetAdmin.png'
+
 
 const Projects: React.FC = () => {
   const { t, i18n } = useTranslation();
-  const currentLang = i18n.language === 'vi' ? 'vi' : 'en';
+  const currentLang = i18n.language === "vi" ? "vi" : "en";
 
   const projects = [
     {
+      title: "Warehouse",
+      description: `${t('projects.warehouse')}`,
       id: 1,
-      title: { en: 'Internal Dashboard', vi: 'Bảng Điều Khiển Nội Bộ' },
-      description: { 
-        en: 'A comprehensive dashboard for internal team management.', 
-        vi: 'Bảng điều khiển toàn diện để quản lý đội nhóm nội bộ.'
-      },
-      technologies: ['React', 'Material UI', 'TypeScript', 'Chart.js'],
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      github: 'https://github.com',
-      liveDemo: 'https://example.com/dashboard'
+      image:'/src/assets/image/imageProject/wh-1.png',
+        
+      technologies: ["React", "Ant design", "Redux mock", "Less"],
+      icon: [<FaReact className="text-cyan-400 text-2xl" />,
+      <SiAntdesign className="text-red-600 text-2xl" />,
+      <SiRedux className="text-cyan-600 text-2xl" />,
+      <FaLess className="text-cyan-600 text-2xl" />,
+      ],
+      github: "#",
+      liveDemo: "#",
     },
     {
+      title: "SalePlan",
+      description: `${t('projects.salePlan')}`,
       id: 2,
-      title: { en: 'E-commerce Platform', vi: 'Nền Tảng Thương Mại Điện Tử' },
-      description: { 
-        en: 'Modern e-commerce solution with real-time inventory.', 
-        vi: 'Giải pháp thương mại điện tử hiện đại với quản lý kho hàng thời gian thực.'
-      },
-      technologies: ['React', 'NestJS', 'Ant Design', 'PostgreSQL'],
-      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      github: 'https://github.com',
-      liveDemo: 'https://example.com/ecommerce'
-    }
+      image:'/src/assets/image/imageProject/sl-1.png',
+
+      technologies: ["React", "Ant design", "Redux mock", "Less"],
+      icon: [<FaReact className="text-cyan-400 text-2xl" />,
+      <SiAntdesign className="text-red-600 text-2xl" />,
+      <SiRedux className="text-cyan-600 text-2xl" />,
+      <FaLess className="text-cyan-600 text-2xl" />,
+      ],
+      github: "#",
+      liveDemo: "#",
+    },
+    {
+      title: "Call Insight",
+      description: `${t('projects.callInsight')}`,
+      id: 3,
+      image:'/src/assets/image/imageProject/ci-1.png',
+      technologies: ["NextJs", "Material", "Redux toolkit", "Tailwind"],
+      icon: [<SiNextdotjs className="text-gray-800 text-2xl" />,
+      <SiMui className="text-blue-600 text-2xl" />,
+      <SiRedux className="text-cyan-600 text-2xl" />,
+      <SiTailwindcss className="text-cyan-400 text-2xl" />,
+      ],
+      github: "#",
+      liveDemo: "#",
+    },
+    {
+      title: "Admin Ecommerce",
+      description:`${t('projects.appSmith')}`,
+      id: 4,
+      image:'/src/assets/image/imageProject/as-1.png',
+      technologies: ["AppSmith", "Javascript", "Css"],
+      icon: [<img src={appsmith} className="text-gray-800 text-2xl w-6" />,
+      <FaJs className="text-yellow-500 text-2xl" />,
+      <FaCss3Alt className="text-blue-500 text-2xl" />,
+      ],
+      github: "#",
+      liveDemo: "#",
+    },
+    {
+      title: "Internal App",
+      description: `${t('projects.jetadmin')}`,
+      id: 5,
+      image:'/src/assets/image/imageProject/ja-1.png',
+      technologies: ["JetAdmin", "Javascript", "Css"],
+      icon: [<img src={jetadmin} className="text-gray-800 text-2xl w-6" />,
+        <FaJs className="text-yellow-500 text-2xl" />,
+        <FaCss3Alt className="text-blue-500 text-2xl" />,
+        ],
+      github: "#",
+      liveDemo: "#",
+    },
+
   ];
 
   return (
-    <section id="projects" className="min-h-screen flex items-center justify-center py-16">
+    <section
+      id="projects"
+      className="min-h-screen flex items-center justify-center py-16"
+    >
       <div className="w-full">
         <FadeIn>
-          <h2 className="text-3xl font-bold mb-12 dark:text-white text-center">{t('projects.title')}</h2>
+          <BlurText
+            text={t("projects.title")}
+            delay={150}
+            animateBy="words"
+            direction="top"
+            className="flex justify-center items-center text-3xl font-bold dark:text-white text-center"
+          />
         </FadeIn>
-        
-        <Stagger className="grid md:grid-cols-2 gap-8" staggerDelay={0.2}>
-          {projects.map((project) => (
-            <motion.div 
-              key={project.id} 
-              className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-sm"
-              whileHover={{ y: -10 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            >
-              <Link to={`/projects/${project.id}`}>
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title[currentLang]}
-                    className="w-full h-48 object-cover"
-                  />
-                </motion.div>
-              </Link>
-              <div className="p-6">
-                <Link to={`/projects/${project.id}`}>
-                  <h3 className="text-xl font-semibold mb-2 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                    {project.title[currentLang]}
-                  </h3>
-                </Link>
-                <p className="text-gray-700 dark:text-gray-300 mb-4">
-                  {project.description[currentLang]}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.map((tech) => (
-                    <motion.span
-                      key={tech}
-                      className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-700 dark:text-gray-300"
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 10 }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
-                <div className="flex justify-between items-center">
-                  <motion.div
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                  >
-                    <Link
-                      to={`/projects/${project.id}`}
-                      className="flex items-center gap-2 text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
-                    >
-                      <span>{t('projects.viewDetails')}</span>
-                      <ExternalLink size={16} />
-                    </Link>
-                  </motion.div>
-                  <div className="flex gap-3">
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-                      aria-label="GitHub"
-                      whileHover={{ y: -3, rotate: 5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    >
-                      <Github size={18} />
-                    </motion.a>
-                    <motion.a
-                      href={project.liveDemo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-gray-600 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-                      aria-label="Live Demo"
-                      whileHover={{ y: -3, rotate: -5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    >
-                      <ExternalLink size={18} />
-                    </motion.a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </Stagger>
+        <span className="block h-1 w-24 bg-cyan-500 mt-4 mb-8 mx-auto rounded-full"></span>
+        <FadeIn delay={0.6} direction="up">
+          <div style={{ height: "600px", position: "relative" }}>
+            <Carousel
+              autoplay={false}
+              autoplayDelay={3000}
+              pauseOnHover={true}
+              items={projects}
+            />
+          </div>
+        </FadeIn>
       </div>
     </section>
   );

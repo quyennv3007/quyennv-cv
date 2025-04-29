@@ -3,77 +3,54 @@ import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import FadeIn from '../components/animations/FadeIn';
 import ZoomIn from '../components/animations/ZoomIn';
-import RevealText from '../components/animations/RevealText';
-import { Download, Mail } from 'lucide-react';
+import { Download, Mail, Phone } from 'lucide-react';
 import { useReactToPrint } from 'react-to-print';
 import avatar from '../assets/image/avatar.jpg'
 import ShinyText from '../components/ShinyText';
-import RotatingText from '../components/RotatingText';
 import TypedText from '../components/TypedText';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { FaGithub } from 'react-icons/fa6';
 
 interface HomeProps {
   darkMode?: boolean;
 }
 const Home: React.FC<HomeProps> = ({ darkMode }) => {
   const { t } = useTranslation();
-
+  const navigate = useNavigate();
   const handlePrint = useReactToPrint({
-    content: () => document.getElementById('root'),
-    pageStyle: `
-      @media print {
-        @page {
-          size: A4 portrait;
-          margin: 15mm;
-        }
-        html, body {
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-          background-color: white !important;
-        }
-        nav, footer, button, .print-hide {
-          display: none !important;
-        }
-        section {
-          page-break-inside: avoid;
-          min-height: auto !important;
-          padding: 0 !important;
-          margin: 15px 0 !important;
-        }
-        h1, h2, h3 {
-          page-break-after: avoid;
-        }
-        img {
-          max-width: 100% !important;
-        }
-        .dark {
-          background: white !important;
-          color: black !important;
-        }
-        .dark * {
-          color: black !important;
-          border-color: #ddd !important;
-          background: white !important;
-        }
-        .print-section {
-          break-inside: avoid;
-        }
-      }
-    `,
-    onBeforeGetContent: () => {
-      document.body.classList.add('printing');
-      return Promise.resolve();
-    },
-    onAfterPrint: () => {
-      document.body.classList.remove('printing');
-    },
-    removeAfterPrint: true,
+
   });
 
   const handleEmailClick = () => {
-    const mailtoLink = 'mailto:john@example.com?subject=CV Inquiry from website&body=Hello, I viewed your CV website and would like to connect with you regarding an opportunity.';
+    const mailtoLink = 'mailto:quyennv3007@gmail.com?subject=CV Inquiry from website&body=Hello, I viewed your CV website and would like to connect with you regarding an opportunity.';
     window.open(mailtoLink, '_blank');
   };
+  const handlePhoneCall = () => {
+    const telLink = 'tel:0368395871';
+    window.open(telLink, '_blank');
+  };
+
+  const scrollToSection = (id: string) => {
+    const isHomePage = location.pathname === '/';
+
+    if (!isHomePage) {
+      // If not on homepage, navigate to homepage with hash
+      navigate(`/${id}`);
+      return;
+    }
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center">
@@ -170,21 +147,21 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
           </FadeIn>
 
           <FadeIn delay={0.8} direction="right" className="flex gap-4 mb-6 justify-center md:justify-start">
-            <motion.a href="#" whileHover={{ scale: 1.1 }} className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500">
+            <motion.a href="https://www.facebook.com/nguyen.van.quyen.678958" target='_blank' whileHover={{ scale: 1.1 }} className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500">
               <span className="sr-only">Facebook</span>
               <FaFacebook size={18} />
             </motion.a>
-            <motion.a href="#" whileHover={{ scale: 1.1 }} className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500">
-              <span className="sr-only">Twitter</span>
-              <FaTwitter size={18} />
+            <motion.a href="#" onClick={handleEmailClick} whileHover={{ scale: 1.1 }} className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500">
+              <span className="sr-only">Email</span>
+              <Mail size={18} />
             </motion.a>
-            <motion.a href="#" whileHover={{ scale: 1.1 }} className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500">
-              <span className="sr-only">Instagram</span>
-              <FaInstagram size={18} />
+            <motion.a href="#" onClick={handlePhoneCall} whileHover={{ scale: 1.1 }} className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500">
+              <span className="sr-only">Phone</span>
+              <Phone size={18} />
             </motion.a>
-            <motion.a href="#" whileHover={{ scale: 1.1 }} className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500">
-              <span className="sr-only">LinkedIn</span>
-              <FaLinkedin size={18} />
+            <motion.a href="https://github.com/quyennv3007?tab=overview&from=2025-04-01&to=2025-04-29" target='_blank' whileHover={{ scale: 1.1 }} className="w-10 h-10 flex items-center justify-center rounded-full border border-cyan-500 text-cyan-500">
+              <span className="sr-only">github</span>
+              <FaGithub size={18} />
             </motion.a>
           </FadeIn>
           <div className='flex gap-4'>
@@ -210,7 +187,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
 
             <FadeIn delay={0.2} direction="left">
               <motion.button
-                onClick={handlePrint}
+                onClick={()=>scrollToSection('contact')}
                 className="flex items-center justify-center gap-3 border-cyan-500 border-2 text-cyan-500 px-6 py-3 rounded-full shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}

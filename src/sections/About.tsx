@@ -11,12 +11,12 @@ import anh5 from '../assets/image/anh-5.jpg';
 import anh6 from '../assets/image/anh-6.jpg';
 
 const images = [
-  { id: 1, img: anh1 }, 
+  { id: 1, img: anh1 },
   { id: 2, img: anh2 },
   { id: 3, img: anh3 },
   { id: 4, img: anh4 },
   { id: 5, img: anh5 },
-  { id: 6, img: anh6 }, 
+  { id: 6, img: anh6 },
 ];
 
 const About: React.FC = () => {
@@ -43,8 +43,9 @@ const About: React.FC = () => {
           animateBy="words"
           direction="top"
           onAnimationComplete={handleAnimationComplete}
-          className="text-3xl font-bold mb-8 text-center flex justify-center items-center dark:text-white "
+          className="text-3xl font-bold  text-center flex justify-center items-center dark:text-white "
         />
+        <span className="block h-1 w-24 bg-cyan-500 mt-4 mb-8 mx-auto rounded-full"></span>
         <div className="grid grid-cols-2 md:grid-cols-10 gap-4 items-center">
           <div className="col-span-6">
             {aboutContentLines.map((line, index) => (

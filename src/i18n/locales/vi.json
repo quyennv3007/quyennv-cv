@@ -23,19 +23,24 @@
     "content": "Tôi là lập trình viên Front-end với gần 2 năm kinh nghiệm, chuyên phát triển ứng dụng web bằng ReactJS và các thư viện UI như Ant Design, Material UI. Tôi có khả năng xây dựng giao diện thân thiện, tối ưu hiệu suất và responsive trên nhiều thiết bị. Ngoài ra, tôi có kiến thức cơ bản về backend và API, cùng kỹ năng làm việc nhóm và sử dụng Git. Mục tiêu của tôi là không ngừng nâng cao kỹ năng lập trình và đóng góp vào các dự án sản phẩm chất lượng cao."
   },
   "experience": {
-    "title": "Kinh nghiệm làm việc",
+    "title": "Kinh nghiệm",
+    "Responsibilities": "trách nhiệm trong công việc",
     "current": {
       "title": "Lập trình viên Front-end",
-      "company": "Tên công ty",
-      "period": "2022 - Hiện tại",
+      "company": "Vietmap",
+      "period": "3/2023 - Hiện tại",
       "responsibilities": [
         "Phát triển và bảo trì nhiều ứng dụng web sử dụng React",
         "Hợp tác với team thiết kế để xây dựng giao diện responsive",
-        "Cải thiện hiệu suất và thời gian tải trang lên 40%"
-      ]
+        "Tham gia phát triển các dự án sử dụng Next.js và Vue.js",
+        "Làm việc với các nền tảng low-code như Jet Admin và Appsmith để xây dựng dashboard và công cụ nội bộ",
+        "Tối ưu hóa trải nghiệm người dùng và đảm bảo tính nhất quán trên các trình duyệt và thiết bị khác nhau"
+      ],
+      "summary": "Hành trình nghề nghiệp và kinh nghiệm làm việc của tôi trong ngành công nghệ."
     }
   },
   "projects": {
+    "timeline":"Thời gian",
     "title": "Dự án",
     "viewDetails": "Xem chi tiết",
     "backToProjects": "Quay lại Dự án",
@@ -46,7 +51,12 @@
     "links": "Liên kết dự án",
     "sourceCode": "Mã nguồn",
     "liveDemo": "Demo trực tuyến",
-    "notFound": "Không tìm thấy dự án"
+    "notFound": "Không tìm thấy dự án",
+    "warehouse":"Ứng dụng quản lý kho cho hệ thống bảo hành VietMap, hỗ trợ theo dõi sản phẩm tồn kho, sản phẩm đổi trả và bảo hành.",
+    "salePlan":"Ứng dụng hỗ trợ đội ngũ kinh doanh VietMap lập kế hoạch bán hàng theo quý và năm.",
+    "callInsight":"Ứng dụng phân tích cuộc gọi, hỗ trợ bộ phận chăm sóc khách hàng đánh giá kỹ năng và hiệu quả làm việc của nhân viên.",
+    "appSmith":"Ứng dụng quản trị hệ thống bán hàng VietMap, dành cho các đại lý để đặt mua sản phẩm trực tiếp trên nền tảng VietMap.",
+    "jetadmin":"Hệ thống ứng dụng nội bộ, bao gồm các ứng dụng thanh toán, quản lý SIM và quản lý thiết bị Logitech..."
   },
   "education": {
     "title": "Học vấn",
@@ -62,7 +72,6 @@
     "communication": "Giao tiếp",
     "problemSolving": "Giải quyết vấn đề",
     "teamwork": "Làm việc nhóm"
-
   },
   "languages": {
     "title": "Ngôn ngữ",

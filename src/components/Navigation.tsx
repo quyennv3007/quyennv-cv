@@ -66,7 +66,7 @@ const Navigation: React.FC<NavigationProps> = ({ darkMode }) => {
 
     if (!isHomePage) {
       // If not on homepage, navigate to homepage with hash
-      navigate(`/#${id}`);
+      navigate(`/${id}`);
       return;
     }
 

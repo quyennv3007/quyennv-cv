@@ -523,7 +523,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
         <Navigation darkMode={darkMode} />  
         
         <motion.main 
-          className={`main-content container mx-auto px-2 sm:px-4 pt-2 max-w-4xl flex-grow 
+          className={`main-content container mx-auto px-2 sm:px-4 pt-2 max-w-5xl flex-grow 
             ${darkMode ? 'bg-gray-900/60' : 'bg-white/60'} rounded-none md:rounded-lg mt-0 md:mt-4 shadow-lg`}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
