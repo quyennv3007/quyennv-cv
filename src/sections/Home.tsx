@@ -8,9 +8,10 @@ import { useReactToPrint } from 'react-to-print';
 import avatar from '../assets/image/avatar.jpg'
 import ShinyText from '../components/ShinyText';
 import TypedText from '../components/TypedText';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { FaFacebook } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa6';
+import cvPdf from '../assets/filePdf/NGUYEN-VAN-QUYEN-FRONT-END.pdf';
 
 interface HomeProps {
   darkMode?: boolean;
@@ -51,6 +52,22 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
       });
     }
   }
+  
+    const handleDownloadCV = () => {
+      // Tạo một thẻ a ẩn để tải file
+      const link = document.createElement('a');
+      link.href = cvPdf;
+      link.setAttribute('download', 'NGUYEN-VAN-QUYEN-FRONT-END-CV.pdf'); // Đặt tên file khi tải xuống
+      
+      // Thêm link vào DOM
+      document.body.appendChild(link);
+      
+      // Kích hoạt sự kiện click
+      link.click();
+      
+      // Xóa link sau khi đã sử dụng
+      document.body.removeChild(link);
+    };
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center">
@@ -168,7 +185,7 @@ const Home: React.FC<HomeProps> = ({ darkMode }) => {
 
             <FadeIn delay={0.2} direction="left">
               <motion.button
-                onClick={handlePrint}
+                onClick={handleDownloadCV}
                 className="flex items-center justify-center gap-3 bg-gradient-to-r from-cyan-500 to-cyan-400 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-cyan-500/20 transition-all duration-300"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}

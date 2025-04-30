@@ -8,7 +8,7 @@
   "nav": {
     "home": "Trang chủ",
     "about": "Giới thiệu",
-    "skills": "Kỹ năng",
+    "skills": "Kỹ năng của tôi",
     "experience": "Kinh nghiệm",
     "projects": "Dự án",
     "education": "Học vấn",
@@ -24,7 +24,7 @@
   },
   "experience": {
     "title": "Kinh nghiệm",
-    "Responsibilities": "trách nhiệm trong công việc",
+    "Responsibilities": "Trách nhiệm trong công việc",
     "current": {
       "title": "Lập trình viên Front-end",
       "company": "Vietmap",
@@ -41,7 +41,7 @@
   },
   "projects": {
     "timeline":"Thời gian",
-    "title": "Dự án",
+    "title": "Dự án của tôi",
     "viewDetails": "Xem chi tiết",
     "backToProjects": "Quay lại Dự án",
     "backToHome": "Quay về Trang chủ",
@@ -81,10 +81,28 @@
     "intermediate": "Đọc hiểu kỹ thuật & Giao tiếp cơ bản"
   },
   "contact": {
-    "title": "Liên hệ",
+    "title": "Liên hệ với tôi",
     "email": "Gửi email",
     "print": "In CV",
     "followMe": "Theo dõi tôi",
-    "downloadCV": "Tải xuống CV"
+    "downloadCV": "Tải xuống CV",
+    "contactInformation": "Thông tin liên hệ",
+    "contactDescription": "Hãy liên hệ với tôi. Tôi sẽ phản hồi sớm nhất có thể.",
+    "phone": "Số điện thoại",
+    "connect": "Kết nối với tôi",
+    "form": {
+      "title": "Gửi tin nhắn",
+      "firstName": "Họ",
+      "lastName": "Tên",
+      "email": "Email",
+      "phone": "Số điện thoại",
+      "subject": "Chủ đề",
+      "message": "Tin nhắn",
+      "submit": "Gửi tin nhắn",
+      "sending": "Đang gửi...",
+      "success": "Gửi thành công!",
+      "error": "Không thể gửi tin nhắn. Vui lòng thử lại.",
+      "generalInquiry": "Yêu cầu chung"
+    }  
   }
 }

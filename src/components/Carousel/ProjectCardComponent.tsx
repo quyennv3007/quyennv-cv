@@ -102,7 +102,7 @@ const ProjectCardComponent = memo(({
 
   return (
     <motion.div
-      className="relative shrink-0 bg-white dark:bg-gray-800 rounded-xl overflow-hidden p-2"
+      className="relative shrink-0 bg-white dark:bg-gray-800 rounded-xl overflow-hidden p-2 "
       style={{
         width: itemWidth,
         rotateY: rotateY,
@@ -116,7 +116,7 @@ const ProjectCardComponent = memo(({
     >
       {/* Card background */}
       <motion.div
-        className="inset-0 bg-white dark:bg-gray-800 backdrop-blur-sm"
+        className="inset-0 bg-white dark:bg-gray-800 backdrop-blur-sm "
         style={{
           // border: "1px solid rgba(209, 213, 219, 0.3)",
         }}
@@ -136,7 +136,7 @@ const ProjectCardComponent = memo(({
 
       {/* Shadow outline */}
       <motion.div
-        className="absolute -inset-0.5 rounded-xl opacity-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 blur-sm"
+        className="absolute -inset-0.5 rounded-xl opacity-0 bg-gradient-to-r from-blue-600/20 to-purple-600/20 blur-sm "
         variants={{
           initial: {
             opacity: 0,

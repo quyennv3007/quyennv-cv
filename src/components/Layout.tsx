@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import backround2 from '../../public/assets/images/backround2.jpg'
 import whiteClouds from '../../public/assets/images/whiteClouds.jpg'
 import './layout.css';
+import { useLocation } from 'react-router-dom';
 
 interface LayoutProps {
   darkMode: boolean;
@@ -215,7 +216,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     width: typeof window !== 'undefined' ? window.innerWidth : 0,
     height: typeof window !== 'undefined' ? window.innerHeight : 0
   });
-  
+  const location = useLocation();
   // Thêm state cho các ngôi sao
   const [stars, setStars] = useState<Star[]>([]);
   const [largeStars, setLargeStars] = useState<Star[]>([]);
@@ -253,6 +254,12 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
       if (timeoutId) clearTimeout(timeoutId);
     };
   }, []);
+
+  const isDetailPage = useMemo(() => {
+    // Kiểm tra nếu URL phù hợp với pattern cho detail pages
+    const detailPagePattern = /\/projects\/\d+/;
+    return detailPagePattern.test(location.pathname);
+  }, [location.pathname]);
 
   // Tạo các ngôi sao khi component mount hoặc khi chuyển sang dark mode
   useEffect(() => {
@@ -520,7 +527,7 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
           </motion.button>
         </div>
         
-        <Navigation darkMode={darkMode} />  
+        {!isDetailPage && <Navigation darkMode={darkMode} />}
         
         <motion.main 
           className={`main-content container mx-auto px-2 sm:px-4 pt-2 max-w-5xl flex-grow 

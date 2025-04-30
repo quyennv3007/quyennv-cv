@@ -4,6 +4,10 @@ import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import ProjectDetail from './pages/ProjectDetail';
 import './i18n';
+import emailjs from 'emailjs-com';
+
+// Khởi tạo EmailJS với User ID của bạn
+emailjs.init("gVXnxKxLWKngsecMR");
 
 // ScrollToTop component to handle navigation
 function ScrollToTop() {

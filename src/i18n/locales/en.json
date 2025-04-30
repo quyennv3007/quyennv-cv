@@ -23,7 +23,7 @@
     "content": "I am a Front-end Developer with nearly 2 years of experience, specializing in building web applications using ReactJS and popular UI libraries such as Ant Design and Material UI. I have strong skills in creating user-friendly, high-performance, and responsive interfaces across various devices. In addition, I possess basic knowledge of backend development and APIs, as well as experience working in teams and using Git. My goal is to continuously improve my programming skills and contribute to high-quality product development projects."
   },
   "skills": {
-    "skills": "skills",
+    "skills": "My Skills",
     "technical": "Technical Skills",
     "professional": "Professional Skills",
     "creativity": "Creativity",
@@ -50,7 +50,7 @@
   },
   "projects": {
     "timeline":"Timeline",
-    "title": "Projects",
+    "title": "My Projects",
     "viewDetails": "View Details",
     "backToProjects": "Back to Projects",
     "backToHome": "Back to Home",
@@ -81,10 +81,30 @@
     "intermediate": "Technical Reading & Basic Communication"
   },
   "contact": {
-    "title": "Contact",
+    "title": "Let's Contact",
     "email": "Email Me",
     "print": "Print CV",
     "followMe": "Follow Me",
-    "downloadCV": "Download CV"
+    "downloadCV": "Download CV",
+    "sendMessage": "Send a Message",
+    "contactInformation": "Contact Information",
+    "contactDescription": "Feel free to reach out. I'll get back to you as soon as possible.",
+    "phone": "Phone",
+    "connect": "Connect with me",
+    "form": {
+      "title": "Send a Message",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Failed to send message. Please try again.",
+      "generalInquiry": "General Inquiry"
+    }
+    
   }
 }
