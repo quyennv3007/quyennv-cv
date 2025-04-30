@@ -167,7 +167,7 @@ const ProjectDetail: React.FC = () => {
 
   // Add metadata for SEO
   useEffect(() => {
-    document.title = `${project.title[currentLang]} - John Doe Portfolio`;
+    // document.title = `${project.title[currentLang]} - John Doe Portfolio`;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', project.description[currentLang]);

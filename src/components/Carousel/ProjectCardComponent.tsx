@@ -207,7 +207,7 @@ const ProjectCardComponent = memo(({
           {item.liveDemo && (
             <motion.a
               href={`projects/${item.id}`}
-              target="_blank"
+              // target="_blank"
               rel="noopener noreferrer"
               className="p-2 bg-white rounded-full shadow-lg text-gray-800 hover:text-blue-600 flex items-center justify-center"
               variants={buttonVariants}
