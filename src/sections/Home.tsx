@@ -11,7 +11,7 @@ import TypedText from '../components/TypedText';
 import { FaFacebook } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { FaGithub } from 'react-icons/fa6';
-import cvPdf from '../assets/filePdf/NGUYEN-VAN-QUYEN-FRONT-END.pdf';
+import cvPdf from '../assets/filePdf/NGUYEN-VAN-QUYEN-FRONT-END-CV.pdf';
 
 interface HomeProps {
   darkMode?: boolean;
