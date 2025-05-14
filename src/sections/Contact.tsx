@@ -4,6 +4,7 @@ import { Mail, Send, Phone, MessageSquare, User } from 'lucide-react';
 import FadeIn from '../components/animations/FadeIn';
 import GradientBlurText from '../components/GradientTitle';
 import emailjs from 'emailjs-com';
+import '../index.css';
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -93,7 +94,7 @@ const Contact = () => {
       <div className="w-full max-w-6xl z-10">
         <FadeIn>
 
-          {/* Sử dụng component GradientBlurText mới ở đây */}
+          {/* Sử dụng component GradientBlurText mới ở đây */}          
           <GradientBlurText
             text={t('contact.title')}
             animateBy="words"
