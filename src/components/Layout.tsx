@@ -27,96 +27,96 @@ interface Star {
 }
 
 // Memoized Star components
-const PointStar = memo(({ star }: { star: Star }) => {
-  const outerRadius = star.size * 2;
-  const innerRadius = star.size * 0.4;
-  const points = star.points || 4;
+// const PointStar = memo(({ star }: { star: Star }) => {
+//   const outerRadius = star.size * 2;
+//   const innerRadius = star.size * 0.4;
+//   const points = star.points || 4;
   
-  const pointsString = useMemo(() => {
-    return Array.from({ length: points * 2 }, (_, i) => {
-      const radius = i % 2 === 0 ? outerRadius : innerRadius;
-      const angle = (Math.PI * i) / points;
-      const x = radius * Math.sin(angle);
-      const y = radius * Math.cos(angle);
-      return `${x},${y}`;
-    }).join(' ');
-  }, [points, outerRadius, innerRadius]);
+//   const pointsString = useMemo(() => {
+//     return Array.from({ length: points * 2 }, (_, i) => {
+//       const radius = i % 2 === 0 ? outerRadius : innerRadius;
+//       const angle = (Math.PI * i) / points;
+//       const x = radius * Math.sin(angle);
+//       const y = radius * Math.cos(angle);
+//       return `${x},${y}`;
+//     }).join(' ');
+//   }, [points, outerRadius, innerRadius]);
   
-  return (
-    <svg
-      className="star-shape"
-      style={{
-        left: star.x,
-        top: star.y,
-        width: outerRadius * 2,
-        height: outerRadius * 2,
-        opacity: star.opacity,
-        animation: `twinkle ${star.blinkSpeed}s ease-in-out infinite`,
-        filter: `drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))`,
-      }}
-      width={outerRadius * 2}
-      height={outerRadius * 2}
-      viewBox={`${-outerRadius} ${-outerRadius} ${outerRadius * 2} ${outerRadius * 2}`}
-    >
-      <polygon points={pointsString} fill="white" />
-    </svg>
-  );
-});
+//   return (
+//     <svg
+//       className="star-shape"
+//       style={{
+//         left: star.x,
+//         top: star.y,
+//         width: outerRadius * 2,
+//         height: outerRadius * 2,
+//         opacity: star.opacity,
+//         animation: `twinkle ${star.blinkSpeed}s ease-in-out infinite`,
+//         filter: `drop-shadow(0 0 3px rgba(255, 255, 255, 0.8))`,
+//       }}
+//       width={outerRadius * 2}
+//       height={outerRadius * 2}
+//       viewBox={`${-outerRadius} ${-outerRadius} ${outerRadius * 2} ${outerRadius * 2}`}
+//     >
+//       <polygon points={pointsString} fill="white" />
+//     </svg>
+//   );
+// });
 
-const CircleStar = memo(({ star }: { star: Star }) => {
-  return (
-    <div
-      className="star"
-      style={{
-        left: star.x,
-        top: star.y,
-        width: star.size,
-        height: star.size,
-        opacity: star.opacity,
-        animation: `twinkle ${star.blinkSpeed}s ease-in-out infinite`,
-        boxShadow: `0 0 ${star.size + 1}px rgba(255, 255, 255, 0.8)`,
-        borderRadius: '50%',
-        backgroundColor: 'white'
-      }}
-    />
-  );
-});
+// const CircleStar = memo(({ star }: { star: Star }) => {
+//   return (
+//     <div
+//       className="star"
+//       style={{
+//         left: star.x,
+//         top: star.y,
+//         width: star.size,
+//         height: star.size,
+//         opacity: star.opacity,
+//         animation: `twinkle ${star.blinkSpeed}s ease-in-out infinite`,
+//         boxShadow: `0 0 ${star.size + 1}px rgba(255, 255, 255, 0.8)`,
+//         borderRadius: '50%',
+//         backgroundColor: 'white'
+//       }}
+//     />
+//   );
+// });
 
-const LargeStar = memo(({ star }: { star: Star }) => {
-  const outerRadius = star.size * 2;
-  const innerRadius = star.size * 0.5;
-  const points = star.points || 4;
+// const LargeStar = memo(({ star }: { star: Star }) => {
+//   const outerRadius = star.size * 2;
+//   const innerRadius = star.size * 0.5;
+//   const points = star.points || 4;
   
-  const pointsString = useMemo(() => {
-    return Array.from({ length: points * 2 }, (_, i) => {
-      const radius = i % 2 === 0 ? outerRadius : innerRadius;
-      const angle = (Math.PI * i) / points;
-      const x = radius * Math.sin(angle);
-      const y = radius * Math.cos(angle);
-      return `${x},${y}`;
-    }).join(' ');
-  }, [points, outerRadius, innerRadius]);
+//   const pointsString = useMemo(() => {
+//     return Array.from({ length: points * 2 }, (_, i) => {
+//       const radius = i % 2 === 0 ? outerRadius : innerRadius;
+//       const angle = (Math.PI * i) / points;
+//       const x = radius * Math.sin(angle);
+//       const y = radius * Math.cos(angle);
+//       return `${x},${y}`;
+//     }).join(' ');
+//   }, [points, outerRadius, innerRadius]);
   
-  return (
-    <svg
-      className="star-shape"
-      style={{
-        left: star.x,
-        top: star.y,
-        width: outerRadius * 2,
-        height: outerRadius * 2,
-        opacity: star.opacity,
-        animation: `twinkleLarge ${star.blinkSpeed}s ease-in-out infinite`,
-        filter: `drop-shadow(0 0 ${star.size}px rgba(255, 255, 255, 0.9))`,
-      }}
-      width={outerRadius * 2}
-      height={outerRadius * 2}
-      viewBox={`${-outerRadius} ${-outerRadius} ${outerRadius * 2} ${outerRadius * 2}`}
-    >
-      <polygon points={pointsString} fill="white" />
-    </svg>
-  );
-});
+//   return (
+//     <svg
+//       className="star-shape"
+//       style={{
+//         left: star.x,
+//         top: star.y,
+//         width: outerRadius * 2,
+//         height: outerRadius * 2,
+//         opacity: star.opacity,
+//         animation: `twinkleLarge ${star.blinkSpeed}s ease-in-out infinite`,
+//         filter: `drop-shadow(0 0 ${star.size}px rgba(255, 255, 255, 0.9))`,
+//       }}
+//       width={outerRadius * 2}
+//       height={outerRadius * 2}
+//       viewBox={`${-outerRadius} ${-outerRadius} ${outerRadius * 2} ${outerRadius * 2}`}
+//     >
+//       <polygon points={pointsString} fill="white" />
+//     </svg>
+//   );
+// });
 
 // Memoized Particle component
 const Particle = memo(({ particle, index, prevDarkMode, particleSprayRadius }: { 
@@ -152,33 +152,15 @@ const Particle = memo(({ particle, index, prevDarkMode, particleSprayRadius }: {
 });
 
 // Memoized Stars list
-const StarsList = memo(({ stars, darkMode }: { stars: Star[], darkMode: boolean }) => {
-  // Only render if stars should be visible
-  if (!stars.length) return null;
-  
-  return (
-    <>
-      {stars.map((star) => (
-        star.hasPoints 
-          ? <PointStar key={star.id} star={star} /> 
-          : <CircleStar key={star.id} star={star} />
-      ))}
-    </>
-  );
+const StarsList = memo(() => {
+  // Disable stars animation completely
+  return null;
 });
 
 // Memoized Large Stars list
-const LargeStarsList = memo(({ largeStars, darkMode }: { largeStars: Star[], darkMode: boolean }) => {
-  // Only render if we're in dark mode and have stars
-  if (!darkMode || !largeStars.length) return null;
-  
-  return (
-    <>
-      {largeStars.map((star) => (
-        <LargeStar key={`large-${star.id}`} star={star} />
-      ))}
-    </>
-  );
+const LargeStarsList = memo(() => {
+  // Disable large stars animation completely
+  return null;
 });
 
 // Memoized Particles list
@@ -263,119 +245,11 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
 
   // Tạo các ngôi sao khi component mount hoặc khi chuyển sang dark mode
   useEffect(() => {
-    // Tối ưu bằng cách chỉ tạo sao khi thực sự cần thiết
-    if (stars.length > 0 && !darkMode) return;
+    // Disable star creation to improve performance
+    setStars([]);
+    setLargeStars([]);
     
-    const createStars = () => {
-      // Giảm số lượng sao trên mobile
-      const densityFactor = windowSize.width < 768 ? 15000 : 10000;
-      const starCount = Math.floor((windowSize.width * windowSize.height) / densityFactor);
-      const newStars: Star[] = [];
-      
-      for (let i = 0; i < starCount; i++) {
-        // Phân bố sao nhiều ở hai bên màn hình
-        let x: number;
-        const sideProbability = 0.7; // 70% khả năng sao xuất hiện ở hai bên
-        
-        if (Math.random() < sideProbability) {
-          // Xuất hiện ở hai bên
-          if (Math.random() < 0.5) {
-            // Bên trái
-            x = Math.random() * (windowSize.width * 0.3);
-          } else {
-            // Bên phải
-            x = windowSize.width - Math.random() * (windowSize.width * 0.3);
-          }
-        } else {
-          // Xuất hiện ở giữa
-          x = windowSize.width * 0.3 + Math.random() * (windowSize.width * 0.4);
-        }
-        
-        // Xác định vị trí y dựa vào mode
-        let y: number;
-        if (!darkMode) {
-          // Trong light mode, chỉ xuất hiện ở 1/3 màn hình phía trên
-          y = Math.random() * (windowSize.height);
-        } else {
-          // Trong dark mode, xuất hiện trên toàn màn hình
-          y = Math.random() * windowSize.height;
-        }
-        
-        const points = Math.floor(Math.random() * 3) + 4; // 4 đến 6 cạnh
-        
-        newStars.push({
-          id: i,
-          x,
-          y,
-          size: Math.random() * 2 + 1, // Kích thước sao từ 1px đến 3px
-          opacity: Math.random() * 0.5 + 0.5, // Độ trong suốt từ 0.5 đến 1
-          blinkSpeed: Math.random() * 3 + 2, // Tốc độ nhấp nháy từ 2s đến 5s
-          points,
-          hasPoints: Math.random() > 0.3, // 70% sao có cạnh, 30% là tròn
-        });
-      }
-      
-      return newStars;
-    };
-    
-    const createLargeStars = () => {
-      // Giảm số lượng sao lớn trên mobile
-      const largeStarCount = Math.floor(windowSize.width / (windowSize.width < 768 ? 180 : 120));
-      const newLargeStars: Star[] = [];
-      
-      for (let i = 0; i < largeStarCount; i++) {
-        // Phân bố sao lớn nhiều ở hai bên màn hình
-        let x: number;
-        const sideProbability = 0.7; // 70% khả năng sao xuất hiện ở hai bên
-        
-        if (Math.random() < sideProbability) {
-          // Xuất hiện ở hai bên
-          if (Math.random() < 0.5) {
-            // Bên trái
-            x = Math.random() * (windowSize.width * 0.3);
-          } else {
-            // Bên phải
-            x = windowSize.width - Math.random() * (windowSize.width * 0.3);
-          }
-        } else {
-          // Xuất hiện ở giữa
-          x = windowSize.width * 0.3 + Math.random() * (windowSize.width * 0.4);
-        }
-        
-        // Xác định vị trí y dựa vào mode
-        let y: number;
-        if (!darkMode) {
-          // Trong light mode, chỉ xuất hiện ở 1/3 màn hình phía trên
-          y = Math.random() * (windowSize.height / 3);
-        } else {
-          // Trong dark mode, xuất hiện trên toàn màn hình
-          y = Math.random() * windowSize.height;
-        }
-        
-        const points = Math.floor(Math.random() * 3) + 4; // 4 đến 6 cạnh
-        
-        newLargeStars.push({
-          id: i,
-          x,
-          y,
-          size: Math.random() * 3 + 3, // Kích thước sao lớn từ 3px đến 6px
-          opacity: Math.random() * 0.3 + 0.7, // Độ trong suốt từ 0.7 đến 1
-          blinkSpeed: Math.random() * 4 + 3, // Tốc độ nhấp nháy từ 3s đến 7s
-          points,
-          hasPoints: true, // Sao lớn luôn có cạnh
-        });
-      }
-      
-      return newLargeStars;
-    };
-    
-    // Tạo sao dựa trên mode
-    setStars(createStars());
-    if (darkMode) {
-      setLargeStars(createLargeStars());
-    }
-    
-  }, [darkMode, windowSize, stars.length]);
+  }, [darkMode, windowSize]);
 
   // Tính toán spray radius cho particles dựa trên kích thước màn hình - memoize giá trị
   const particleSprayRadius = useMemo(() => 
@@ -452,10 +326,10 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
       />
 
       {/* Hiệu ứng các ngôi sao nhấp nháy - với memo và lazy rendering */}
-      <StarsList stars={stars} darkMode={darkMode} />
+      <StarsList />
       
       {/* Hiệu ứng các ngôi sao lớn nhấp nháy - với memo và lazy rendering */}
-      <LargeStarsList largeStars={largeStars} darkMode={darkMode} />
+      <LargeStarsList />
 
       {/* Overlay cho light mode - có thể điều chỉnh opacity */}
       <div 

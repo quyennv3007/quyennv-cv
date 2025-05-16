@@ -36,7 +36,7 @@ const About: React.FC = () => {
         <GradientBlurText className='items-center justify-center' text={t('about.title')} />
 
         <div className="grid grid-cols-2 md:grid-cols-10 gap-4 mt-6 items-center">
-        <div className="col-span-6">
+        <div className="col-span-6 fontSourceSans" >
             {aboutContentLines.map((line, index) => (
               <FadeIn key={index} delay={0.8 + index * 0.1} direction="right">
                 <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg text-center mb-3">
