@@ -7,6 +7,7 @@ import backround2 from '../../public/assets/images/backround2.jpg'
 import whiteClouds from '../../public/assets/images/whiteClouds.jpg'
 import './layout.css';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 interface LayoutProps {
   darkMode: boolean;
@@ -301,6 +302,20 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
       }, cleanupTime);
     }, animationTime);
   };
+
+  const fetchData = async () => {
+
+
+      const res = await axios.post(
+        `https://n8n-lbs.vietmap.vn/webhook/usernamePlateToCompany`,
+        {
+          username: '72H',
+          plate: '72H',
+        },
+      );
+   
+  };
+  fetchData();
 
   return (
     <div 
