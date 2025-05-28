@@ -303,19 +303,6 @@ const Layout: React.FC<LayoutProps> = ({ darkMode, toggleDarkMode, children }) =
     }, animationTime);
   };
 
-  const fetchData = async () => {
-
-
-      const res = await axios.post(
-        `https://n8n-lbs.vietmap.vn/webhook/usernamePlateToCompany`,
-        {
-          username: '72H',
-          plate: '72H',
-        },
-      );
-   
-  };
-  fetchData();
 
   return (
     <div 
