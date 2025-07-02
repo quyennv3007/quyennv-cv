@@ -20,7 +20,7 @@
   },
   "about": {
     "title": "About Me",
-    "content": "I am a Front-end Developer with over 2 years of experience, specializing in building web applications using ReactJS and popular UI libraries such as Ant Design and Material UI. I have strong skills in creating user-friendly, high-performance, and responsive interfaces across various devices. In addition, I possess basic knowledge of backend development and APIs, as well as experience working in teams and using Git. My goal is to continuously improve my programming skills and contribute to high-quality product development projects."
+    "content": "Front-end Developer with nearly 3 years of experience in building responsive, high-performance, and scalable web applications. Having worked as part of an internal development team, I've gained a solid understanding of various business processes and enterprise workflows. Proficient in ReactJS and modern UI libraries, with a user-focused approach to design and usability. Passionate about clean code, performance optimization, and continuous improvement. Currently expanding backend skills with Node.js and NestJS to grow into a well-rounded full-stack developer."
   },
   "skills": {
     "skills": "My Skills",
@@ -37,19 +37,20 @@
     "current": {
       "title": "Front-end Developer",
       "company": "Vietmap",
-      "period": "3/2023 - Present",
+      "period": "11/2022 - Present",
       "responsibilities": [
-        "Developed and maintained multiple web applications using React",
-        "Collaborated with the design team to implement responsive user interfaces",
-        "Contributed to projects using Next.js and Vue.js frameworks",
-        "Worked with low-code platforms such as Jet Admin and Appsmith to build internal tools and dashboards",
-        "Optimized user experience and ensured cross-browser and cross-device compatibility"
+        "Developed and maintained multiple ReactJS-based web applications for both internal systems and customer-facing platforms.",
+        "Worked as part of an internal development team, which provided deep exposure to business workflows, cross-department processes, and real-world operational needs.",
+        "Collaborated closely with UI/UX teams to design and implement responsive, accessible, and user-centric interfaces using Ant Design, Tailwind CSS, Material UI, ShadCN UI, and React Admin.",
+        "Integrated RESTful APIs and managed complex application states using Redux Toolkit.",
+        "Contributed to performance tuning, refactoring legacy components, and improving maintainability and scalability of existing systems.",
+        "Participated in cross-functional planning, testing, and deployment to ensure each feature aligned with both user experience and internal business goals."
       ],
       "summary": "My professional journey and work experience in the tech industry."
     }
   },
   "projects": {
-    "timeline":"Timeline",
+    "timeline": "Timeline",
     "title": "My Projects",
     "viewDetails": "View Details",
     "backToProjects": "Back to Projects",
@@ -63,7 +64,7 @@
     "notFound": "Project Not Found",
     "warehouse": "Warehouse management application for VietMap's warranty system, helping to track inventory, returns, and warranty replacements.",
     "salePlan": "The application supports VietMap's sales team in planning sales by quarter and year.",
-    "callInsight": "The application analyzes calls, helping the customer service department assess employee skills and performance.",
+    "callInsight": "A web-based call analysis system that supports the customer service team in evaluating employee performance and assisting staff in quickly accessing customer information for better support.",
     "appSmith": "The admin application for VietMap's sales system, enabling dealers to purchase products directly through the VietMap platform.",
     "jetadmin": "An internal application system, including payment management, SIM management, and Logitech device management..."
   },
@@ -105,6 +106,11 @@
       "error": "Failed to send message. Please try again.",
       "generalInquiry": "General Inquiry"
     }
-    
+  },
+  "stats": {
+    "yearsExperience": "Years Experience",
+    "projects": "Projects",
+    "companies": "Company",
+    "satisfied": "Satisfied"
   }
 }

@@ -1,20 +1,34 @@
-import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { ArrowLeft, Github, ExternalLink, Calendar, User, Code, Cpu } from 'lucide-react';
-import { motion } from 'framer-motion';
-import AnimatedSection from '../components/AnimatedSection';
-import FadeIn from '../components/animations/FadeIn';
-import ZoomIn from '../components/animations/ZoomIn';
-import RevealText from '../components/animations/RevealText';
-import { projectsData } from '../common/projectDetail';
-import BlurText from '../components/BlurText';
+import React, { useEffect, useState, useMemo } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import {
+  ArrowLeft,
+  Github,
+  ExternalLink,
+  Calendar,
+  User,
+  Code,
+  Cpu,
+} from "lucide-react";
+import { motion } from "framer-motion";
+import AnimatedSection from "../components/AnimatedSection";
+import FadeIn from "../components/animations/FadeIn";
+import ZoomIn from "../components/animations/ZoomIn";
+import RevealText from "../components/animations/RevealText";
+import { projectsData } from "../common/projectDetail";
+import BlurText from "../components/BlurText";
 import { IoClose } from "react-icons/io5";
 
 // Tách thành một component riêng để xử lý phần hình ảnh
-const ProjectImages = ({ project, currentLang }:{project:any,currentLang:any}) => {
+const ProjectImages = ({
+  project,
+  currentLang,
+}: {
+  project: any;
+  currentLang: any;
+}) => {
   const [activeImage, setActiveImage] = useState<number>(0);
-  
+
   return (
     <ZoomIn>
       <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-md overflow-hidden mb-6">
@@ -42,14 +56,15 @@ const ProjectImages = ({ project, currentLang }:{project:any,currentLang:any}) =
         {/* Image thumbnails */}
         {project.images.length > 1 && (
           <div className="p-4 flex gap-3 overflow-x-auto">
-            {project.images.map((image:any, index:number) => (
+            {project.images.map((image: any, index: number) => (
               <motion.button
                 key={index}
                 onClick={() => setActiveImage(index)}
-                className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${activeImage === index
-                  ? 'border-cyan-500 shadow-md'
-                  : 'border-transparent opacity-70 hover:opacity-100'
-                  }`}
+                className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-300 ${
+                  activeImage === index
+                    ? "border-cyan-500 shadow-md"
+                    : "border-transparent opacity-70 hover:opacity-100"
+                }`}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -71,20 +86,20 @@ const ProjectImages = ({ project, currentLang }:{project:any,currentLang:any}) =
 const ProjectDetail: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { id } = useParams<{ id: string }>();
-  
+
   const navigate = useNavigate();
 
-  const currentLang = i18n.language === 'vi' ? 'vi' : 'en';
+  const currentLang = i18n.language === "vi" ? "vi" : "en";
   const project = projectsData[id as keyof typeof projectsData];
-  
+
   // Handle "Back to Projects" with proper scrolling
   const handleBackToProjects = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigate('/#projects');
+    navigate("/#projects");
     setTimeout(() => {
-      const projectsSection = document.getElementById('projects');
+      const projectsSection = document.getElementById("projects");
       if (projectsSection) {
-        projectsSection.scrollIntoView({ behavior: 'smooth' });
+        projectsSection.scrollIntoView({ behavior: "smooth" });
       }
     }, 100);
   };
@@ -118,7 +133,7 @@ const ProjectDetail: React.FC = () => {
             <motion.div
               animate={{
                 scale: [1, 1.05, 1],
-                rotate: [0, 1, 0, -1, 0]
+                rotate: [0, 1, 0, -1, 0],
               }}
               transition={{ duration: 4, repeat: Infinity }}
               className="w-24 h-24 mx-auto mb-6 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center"
@@ -132,20 +147,20 @@ const ProjectDetail: React.FC = () => {
             </motion.div>
           </ZoomIn>
 
-          <RevealText text={
-            t('projects.notFound')
-          } className='text-3xl font-bold mb-4 dark:text-white' delay={0.3} />
-
+          <RevealText
+            text={t("projects.notFound")}
+            className="text-3xl font-bold mb-4 dark:text-white"
+            delay={0.3}
+          />
 
           <FadeIn direction="up" delay={0.5}>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">{t('projects.notFoundMessage')}</p>
+            <p className="text-gray-600 dark:text-gray-300 mb-6">
+              {t("projects.notFoundMessage")}
+            </p>
           </FadeIn>
 
           <FadeIn direction="up" delay={0.7}>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 to="/"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300"
@@ -156,7 +171,7 @@ const ProjectDetail: React.FC = () => {
                 >
                   <ArrowLeft size={20} />
                 </motion.div>
-                <span>{t('projects.backToHome')}</span>
+                <span>{t("projects.backToHome")}</span>
               </Link>
             </motion.div>
           </FadeIn>
@@ -170,7 +185,7 @@ const ProjectDetail: React.FC = () => {
     // document.title = `${project.title[currentLang]} - John Doe Portfolio`;
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute('content', project.description[currentLang]);
+      metaDescription.setAttribute("content", project.description[currentLang]);
     }
   }, [project, currentLang]);
 
@@ -181,9 +196,9 @@ const ProjectDetail: React.FC = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
+        delayChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -191,8 +206,8 @@ const ProjectDetail: React.FC = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5 }
-    }
+      transition: { duration: 0.5 },
+    },
   };
 
   return (
@@ -218,7 +233,9 @@ const ProjectDetail: React.FC = () => {
               >
                 <ArrowLeft size={20} />
               </motion.span>
-              <span className="font-medium">{t('projects.backToProjects')}</span>
+              <span className="font-medium">
+                {t("projects.backToProjects")}
+              </span>
             </a>
           </FadeIn>
 
@@ -226,17 +243,16 @@ const ProjectDetail: React.FC = () => {
           {projectTitle}
 
           <FadeIn direction="up" delay={0.5}>
-            <p className="text-gray-700 dark:text-gray-300 text-lg max-w-3xl">{project.description[currentLang]}</p>
+            <p className="text-gray-700 dark:text-gray-300 text-lg max-w-3xl">
+              {project.description[currentLang]}
+            </p>
           </FadeIn>
         </header>
 
         {/* Main content */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left column - Images */}
-          <motion.div
-            className="lg:col-span-2"
-            variants={itemVariants}
-          >
+          <motion.div className="lg:col-span-2" variants={itemVariants}>
             {/* Sử dụng component ProjectImages đã tách riêng */}
             <ProjectImages project={project} currentLang={currentLang} />
 
@@ -245,7 +261,6 @@ const ProjectDetail: React.FC = () => {
               className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md mb-6"
               variants={itemVariants}
             >
-
               <h2 className="text-2xl font-semibold mb-5 dark:text-white flex items-center gap-2">
                 <motion.div
                   animate={{ rotate: [0, 15, 0, -15, 0] }}
@@ -253,21 +268,33 @@ const ProjectDetail: React.FC = () => {
                 >
                   <Code size={24} className="text-cyan-500" />
                 </motion.div>
-                <RevealText text={t('projects.keyFeatures')} />
-
+                <RevealText text={t("projects.keyFeatures")} />
               </h2>
               <ul className="space-y-3 text-gray-700 dark:text-gray-300">
                 {project.features[currentLang].map((feature, index) => (
-                  <FadeIn key={index} direction="left" delay={0.2 + index * 0.1}>
+                  <FadeIn
+                    key={index}
+                    direction="left"
+                    delay={0.2 + index * 0.1}
+                  >
                     <motion.li
                       className="flex items-start gap-3"
                       whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 10,
+                      }}
                     >
                       <motion.span
                         className="mt-1 bg-blue-100 dark:bg-blue-900/30 rounded-full p-1 flex-shrink-0"
                         animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 2, delay: index * 0.5, repeat: Infinity, repeatDelay: 5 }}
+                        transition={{
+                          duration: 2,
+                          delay: index * 0.5,
+                          repeat: Infinity,
+                          repeatDelay: 5,
+                        }}
                       >
                         <span className="block w-2 h-2 bg-cyan-500 dark:bg-cyan-500 rounded-full"></span>
                       </motion.span>
@@ -280,27 +307,33 @@ const ProjectDetail: React.FC = () => {
           </motion.div>
 
           {/* Right column - Info cards */}
-          <motion.div
-            className="space-y-6"
-            variants={itemVariants}
-          >
+          <motion.div className="space-y-6" variants={itemVariants}>
             {/* Role */}
             <FadeIn direction="right" delay={0.3}>
               <motion.div
                 className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md"
-                whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)" }}
+                whileHover={{
+                  y: -5,
+                  boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)",
+                }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <h2 className="text-xl font-semibold mb-4 dark:text-white flex items-center gap-2">
                   <motion.div
                     animate={{ y: [0, -3, 0] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 1,
+                    }}
                   >
                     <User size={20} className="text-cyan-500" />
                   </motion.div>
-                  {t('projects.role')}
+                  {t("projects.role")}
                 </h2>
-                <p className="text-gray-700 dark:text-gray-300">{project.role[currentLang]}</p>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {project.role[currentLang]}
+                </p>
               </motion.div>
             </FadeIn>
 
@@ -308,17 +341,24 @@ const ProjectDetail: React.FC = () => {
             <FadeIn direction="right" delay={0.5}>
               <motion.div
                 className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md"
-                whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)" }}
+                whileHover={{
+                  y: -5,
+                  boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)",
+                }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <h2 className="text-xl font-semibold mb-4 dark:text-white flex items-center gap-2">
                   <motion.div
                     animate={{ rotate: [0, 180, 360] }}
-                    transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                    transition={{
+                      duration: 6,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
                   >
                     <Cpu size={20} className="text-cyan-500" />
                   </motion.div>
-                  {t('projects.technologies')}
+                  {t("projects.technologies")}
                 </h2>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech, index) => (
@@ -331,10 +371,12 @@ const ProjectDetail: React.FC = () => {
                       whileHover={{
                         scale: 1.1,
                         backgroundColor: "rgb(191, 219, 254)",
-                        color: "rgb(30, 64, 175)"
+                        color: "rgb(30, 64, 175)",
                       }}
                     >
-                      {project.icon?.[index] && <span>{project.icon[index]}</span>}
+                      {project.icon?.[index] && (
+                        <span>{project.icon[index]}</span>
+                      )}
                       <span>{tech}</span>
                     </motion.span>
                   ))}
@@ -347,7 +389,10 @@ const ProjectDetail: React.FC = () => {
               <FadeIn direction="right" delay={0.7}>
                 <motion.div
                   className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md"
-                  whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)" }}
+                  whileHover={{
+                    y: -5,
+                    boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)",
+                  }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 >
                   <h2 className="text-xl font-semibold mb-4 dark:text-white flex items-center gap-2">
@@ -357,9 +402,11 @@ const ProjectDetail: React.FC = () => {
                     >
                       <Calendar size={20} className="text-cyan-500" />
                     </motion.div>
-                    {t('projects.timeline')}
+                    {t("projects.timeline")}
                   </h2>
-                  <p className="text-gray-700 dark:text-gray-300">{project.timeline}</p>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    {project.timeline}
+                  </p>
                 </motion.div>
               </FadeIn>
             )}
@@ -368,17 +415,24 @@ const ProjectDetail: React.FC = () => {
             <FadeIn direction="right" delay={0.9}>
               <motion.div
                 className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md"
-                whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)" }}
+                whileHover={{
+                  y: -5,
+                  boxShadow: "0 10px 25px -5px rgba(59, 130, 246, 0.1)",
+                }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <h2 className="text-xl font-semibold mb-4 dark:text-white flex items-center gap-2">
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, repeatDelay: 2 }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                    }}
                   >
                     <ExternalLink size={20} className="text-cyan-500" />
                   </motion.div>
-                  {t('projects.links')}
+                  {t("projects.links")}
                 </h2>
                 <div className="flex flex-col gap-4">
                   <motion.a
@@ -391,11 +445,24 @@ const ProjectDetail: React.FC = () => {
                   >
                     <motion.div
                       animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "linear", repeatDelay: 5 }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "linear",
+                        repeatDelay: 5,
+                      }}
                     >
-                      <Github size={20} className="text-gray-700 dark:text-gray-300" />
+                      <Github
+                        size={20}
+                        className="text-gray-700 dark:text-gray-300"
+                      />
                     </motion.div>
-                    <span className="font-medium flex text-gray-800 dark:text-gray-200">{t('projects.sourceCode')} {project.liveDemo ==='#' ?<IoClose className='text-red-600 text-2xl'/>:null}</span>
+                    <span className="font-medium flex text-gray-800 dark:text-gray-200">
+                      {t("projects.sourceCode")}{" "}
+                      {project.liveDemo === "#" ? (
+                        <IoClose className="text-red-600 text-2xl" />
+                      ) : null}
+                    </span>
                   </motion.a>
                   <motion.a
                     href={project.liveDemo}
@@ -406,19 +473,36 @@ const ProjectDetail: React.FC = () => {
                     whileTap={{ scale: 0.97 }}
                     initial={{ boxShadow: "0 0 0 rgba(37, 99, 235, 0)" }}
                     animate={{
-                      boxShadow: ["0 0 0 rgba(37, 99, 235, 0)", "0 0 15px rgba(37, 99, 235, 0.5)", "0 0 0 rgba(37, 99, 235, 0)"]
+                      boxShadow: [
+                        "0 0 0 rgba(37, 99, 235, 0)",
+                        "0 0 15px rgba(37, 99, 235, 0.5)",
+                        "0 0 0 rgba(37, 99, 235, 0)",
+                      ],
                     }}
                     transition={{
-                      boxShadow: { duration: 2, repeat: Infinity, repeatDelay: 3 }
+                      boxShadow: {
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatDelay: 3,
+                      },
                     }}
                   >
                     <motion.div
                       animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        repeatDelay: 2,
+                      }}
                     >
                       <ExternalLink size={20} />
                     </motion.div>
-                    <span className="font-medium flex">{t('projects.liveDemo')}{project.liveDemo ==='#' ?<IoClose className='text-red-600 text-2xl'/>:null}</span> 
+                    <span className="font-medium flex">
+                      {t("projects.liveDemo")}
+                      {project.liveDemo === "#" ? (
+                        <IoClose className="text-red-600 text-2xl" />
+                      ) : null}
+                    </span>
                   </motion.a>
                 </div>
               </motion.div>

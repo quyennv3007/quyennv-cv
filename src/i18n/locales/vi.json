@@ -20,7 +20,7 @@
   },
   "about": {
     "title": "Giới thiệu",
-    "content": "Tôi là một Front-end Developer với hơn 2 năm kinh nghiệm, chuyên xây dựng các ứng dụng web sử dụng ReactJS cùng các thư viện giao diện phổ biến như Ant Design và Material UI. Tôi có khả năng xây dựng giao diện thân thiện, tối ưu hiệu suất và responsive trên nhiều thiết bị. Ngoài ra, tôi có kiến thức cơ bản về backend và API, cùng kỹ năng làm việc nhóm và sử dụng Git. Mục tiêu của tôi là không ngừng nâng cao kỹ năng lập trình và đóng góp vào các dự án sản phẩm chất lượng cao."
+    "content": "Tôi là một Front-end Developer với hơn 2 nămFront-end Developer với gần 3 năm kinh nghiệm phát triển các ứng dụng web thân thiện với người dùng, hiệu suất cao và dễ mở rộng. Đã làm việc trong team nội bộ, nhờ đó hiểu rõ các nghiệp vụ và quy trình vận hành của doanh nghiệp. Thành thạo ReactJS cùng các thư viện UI hiện đại, có tư duy thiết kế hướng người dùng và quan tâm đến trải nghiệm người dùng cuối. Luôn chú trọng viết code sạch, tối ưu hiệu năng và cải tiến quy trình phát triển. Hiện đang mở rộng kỹ năng backend với Node.js và NestJS để trở thành một lập trình viên full-stack toàn diện."
   },
   "experience": {
     "title": "Kinh nghiệm",
@@ -28,19 +28,20 @@
     "current": {
       "title": "Lập trình viên Front-end",
       "company": "Vietmap",
-      "period": "3/2023 - Hiện tại",
+      "period": "11/2022 - Hiện tại",
       "responsibilities": [
-        "Phát triển và bảo trì nhiều ứng dụng web sử dụng React",
-        "Hợp tác với team thiết kế để xây dựng giao diện responsive",
-        "Tham gia phát triển các dự án sử dụng Next.js và Vue.js",
-        "Làm việc với các nền tảng low-code như Jet Admin và Appsmith để xây dựng dashboard và công cụ nội bộ",
-        "Tối ưu hóa trải nghiệm người dùng và đảm bảo tính nhất quán trên các trình duyệt và thiết bị khác nhau"
+        "Phát triển và duy trì nhiều ứng dụng web sử dụng ReactJS cho cả hệ thống nội bộ và nền tảng dành cho khách hàng.",
+        "Là thành viên trong team phát triển nội bộ, giúp tôi có cái nhìn sâu sắc về quy trình vận hành thực tế, các nghiệp vụ doanh nghiệp và phối hợp hiệu quả giữa các phòng ban.",
+        "Hợp tác chặt chẽ với nhóm UI/UX để thiết kế và triển khai giao diện người dùng thân thiện, dễ truy cập và đáp ứng tốt trên mọi thiết bị, sử dụng Ant Design, Tailwind CSS, Material UI, ShadCN UI và React Admin.",
+        "Tích hợp API và xử lý trạng thái ứng dụng phức tạp bằng Redux Toolkit.",
+        "Tham gia tối ưu hiệu năng giao diện, refactor các thành phần cũ để tăng tính mở rộng và khả năng bảo trì.",
+        "Góp phần vào quá trình phân tích yêu cầu, kiểm thử và triển khai để đảm bảo mỗi tính năng đáp ứng cả trải nghiệm người dùng và mục tiêu vận hành nội bộ."
       ],
       "summary": "Hành trình nghề nghiệp và kinh nghiệm làm việc của tôi trong ngành công nghệ."
     }
   },
   "projects": {
-    "timeline":"Thời gian",
+    "timeline": "Thời gian",
     "title": "Dự án của tôi",
     "viewDetails": "Xem chi tiết",
     "backToProjects": "Quay lại Dự án",
@@ -52,11 +53,11 @@
     "sourceCode": "Mã nguồn",
     "liveDemo": "Demo trực tuyến",
     "notFound": "Không tìm thấy dự án",
-    "warehouse":"Ứng dụng quản lý kho cho hệ thống bảo hành VietMap, hỗ trợ theo dõi sản phẩm tồn kho, sản phẩm đổi trả và bảo hành.",
-    "salePlan":"Ứng dụng hỗ trợ đội ngũ kinh doanh VietMap lập kế hoạch bán hàng theo quý và năm.",
-    "callInsight":"Ứng dụng phân tích cuộc gọi, hỗ trợ bộ phận chăm sóc khách hàng đánh giá kỹ năng và hiệu quả làm việc của nhân viên.",
-    "appSmith":"Ứng dụng quản trị hệ thống bán hàng VietMap, dành cho các đại lý để đặt mua sản phẩm trực tiếp trên nền tảng VietMap.",
-    "jetadmin":"Hệ thống ứng dụng nội bộ, bao gồm các ứng dụng thanh toán, quản lý SIM và quản lý thiết bị Logitech..."
+    "warehouse": "Ứng dụng quản lý kho cho hệ thống bảo hành VietMap, hỗ trợ theo dõi sản phẩm tồn kho, sản phẩm đổi trả và bảo hành.",
+    "salePlan": "Ứng dụng hỗ trợ đội ngũ kinh doanh VietMap lập kế hoạch bán hàng theo quý và năm.",
+    "callInsight": "Hệ thống phân tích cuộc gọi giúp bộ phận chăm sóc khách hàng đánh giá hiệu suất nhân viên và hỗ trợ nhân viên tra cứu nhanh thông tin khách hàng để xử lý yêu cầu hiệu quả hơn.",
+    "appSmith": "Ứng dụng quản trị hệ thống bán hàng VietMap, dành cho các đại lý để đặt mua sản phẩm trực tiếp trên nền tảng VietMap.",
+    "jetadmin": "Hệ thống ứng dụng nội bộ, bao gồm các ứng dụng thanh toán, quản lý SIM và quản lý thiết bị Logitech..."
   },
   "education": {
     "title": "Học vấn",
@@ -103,6 +104,12 @@
       "success": "Gửi thành công!",
       "error": "Không thể gửi tin nhắn. Vui lòng thử lại.",
       "generalInquiry": "Yêu cầu chung"
-    }  
+    }
+  },
+  "stats": {
+    "yearsExperience": "Năm Kinh Nghiệm",
+    "projects": "Dự Án",
+    "companies": "Công Ty",
+    "satisfied": "Hài Lòng"
   }
 }

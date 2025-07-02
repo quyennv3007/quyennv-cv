@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Layout from './components/Layout';
-import HomePage from './pages/HomePage';
-import ProjectDetail from './pages/ProjectDetail';
-import './i18n';
-import emailjs from 'emailjs-com';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+import ProjectDetail from "./pages/ProjectDetail";
+import "./i18n";
+import emailjs from "emailjs-com";
 
 // Khởi tạo EmailJS với User ID của bạn
 emailjs.init("gVXnxKxLWKngsecMR");
@@ -24,7 +24,7 @@ function ScrollToTop() {
 }
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -34,21 +34,21 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Routes>
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
             <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
-              <HomePage darkMode={darkMode}/>
+              <HomePage darkMode={darkMode} />
             </Layout>
-          } 
+          }
         />
-        <Route 
-          path="/projects/:id" 
+        <Route
+          path="/projects/:id"
           element={
             <Layout darkMode={darkMode} toggleDarkMode={toggleDarkMode}>
               <ProjectDetail />
             </Layout>
-          } 
+          }
         />
       </Routes>
     </BrowserRouter>
